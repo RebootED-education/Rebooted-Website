@@ -1,0 +1,602 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projectCards = [
+	{
+		title: 'OttoNinja Motion Lab',
+		focus: 'Robotics + Block Coding',
+		duration: '2 week sprint',
+		kits: ['OttoNinja chassis', 'micro:bit or Nano', 'Ultrasonic rangefinder'],
+		description:
+			'Students remix OttoNinja moves using story cards, then prototype stealthy missions that react to proximity data.',
+	},
+	{
+		title: 'Wearable Sparks Studio',
+		focus: 'Soft Circuits + Storytelling',
+		duration: '5 session mini-lab',
+		kits: ['Conductive thread', 'LED sequins', 'Otto pulse board'],
+		description:
+			'Design narrative badges where light signals emotions. Learners stitch circuits and document testing with quick-reel prompts.',
+	},
+	{
+		title: 'Sonic Playground Capsules',
+		focus: 'Sensors + Creative Audio',
+		duration: 'Weekend jam',
+		kits: ['ESP32 audio wing', 'Piezo discs', '3D printed pod'],
+		description:
+			'Explore playful inputs. Each pod becomes an ambient instrument that can plug into OttoNinja for motion-tracked beats.',
+	},
+];
+
+const kitList = [
+	{
+		name: 'Starter Core',
+		chips: 'OttoNinja servo board + Arduino Nano',
+		useCase: 'Perfect for first builds, movement experiments, and classroom debugging tips.',
+		color: '#F7C245',
+	},
+	{
+		name: 'Explorer Signals',
+		chips: 'Sensor ribbon + plug-and-learn adapters',
+		useCase: 'Introduce ultrasonic, light, and capacitive sensing without rewiring every lesson.',
+		color: '#6DE0B6',
+	},
+	{
+		name: 'Expressive Wearables',
+		chips: 'Otto pulse board + rechargeable coin cells',
+		useCase: 'Supports e-textile residencies and quick costume add-ons for showcases.',
+		color: '#8EC5FF',
+	},
+	{
+		name: 'Community Vault',
+		chips: 'Shared bins for gears, craft foam, recycled plastics',
+		useCase: 'Keeps tactile materials visible so students remix robotics with art-room leftovers.',
+		color: '#FF9EC0',
+	},
+];
+
+const timeline = [
+	{
+		phase: 'Ignite',
+		theme: 'Launch story sparks + rapid demos',
+		outputs: 'Sketchbook spreads, part passports, safety rituals',
+	},
+	{
+		phase: 'Explore',
+		theme: 'Mini labs focused on a single component or creative constraint',
+		outputs: 'Sensor journals, remix videos, reflection sticks',
+	},
+	{
+		phase: 'Build',
+		theme: 'Team prototyping with critique loops and debugging playlists',
+		outputs: 'Showcase-ready prototype, student playbook page',
+	},
+	{
+		phase: 'Amplify',
+		theme: 'Share with authentic audiences + capture evidence of learning',
+		outputs: 'Pop-up gallery, download pack, mini documentary',
+	},
+];
+
+const resourceHighlights = [
+	{
+		title: 'Curriculum Maps',
+		copy: 'Scope + sequence from 5-session pop-ups to 12-week residencies including standards crosswalks.',
+		link: '#',
+	},
+	{
+		title: 'Facilitator Playbook',
+		copy: 'Warmups, reflection prompts, and troubleshooting scripts to keep momentum high.',
+		link: '#',
+	},
+	{
+		title: 'Parts Illustrator Files',
+		copy: 'Printer-ready cut files, wiring zines, and OttoNinja decals for studio walls.',
+		link: '#',
+	},
+];
+---
+
+<Layout
+	title="Rebooted Creative Lab | Creative Education with OttoNinja"
+	description="Creative education hub for OttoNinja robotics, wearable electronics, and playful curriculum resources."
+>
+	<main class="site">
+		<section class="hero" id="hero">
+			<div class="hero__content">
+				<p class="eyebrow">Creative education × OttoNinja</p>
+				<h1>
+					Design learning adventures where robotics, art, and small electronics remix into future-ready skills.
+				</h1>
+				<p class="lede">
+					The Rebooted Creative Lab bundles OttoNinja builds, printable challenges, and curated kits so every
+					session feels like a playful studio residency.
+				</p>
+				<div class="hero__cta">
+					<a class="solid" href="#projects">Plan a workshop</a>
+					<a class="ghost" href="#resources">Browse resources</a>
+				</div>
+				<div class="hero__stats">
+					<div>
+						<strong>120+</strong>
+						<span>Student inventions documented</span>
+					</div>
+					<div>
+						<strong>18</strong>
+						<span>Ready-to-run lesson arcs</span>
+					</div>
+					<div>
+						<strong>4</strong>
+						<span>Kit families to mix + match</span>
+					</div>
+				</div>
+			</div>
+			<div class="hero__panel" aria-label="Featured kit signal">
+				<div class="panel__grid">
+					<div class="panel__card">
+						<p class="panel__label">Live Sensor Feed</p>
+						<output>Distance: 18 cm</output>
+						<output>Light: 72%</output>
+						<output>Sound: 48 dB</output>
+					</div>
+					<div class="panel__card panel__card--accent">
+						<p class="panel__label">Showcase preset</p>
+						<ul>
+							<li>Glow trail choreography</li>
+							<li>Wearable cue sync</li>
+							<li>Audience remix QR</li>
+						</ul>
+					</div>
+					<div class="panel__card">
+						<p class="panel__label">Build checklist</p>
+						<ul class="checklist">
+							<li>Snap OttoNinja legs</li>
+							<li>Flash motion script</li>
+							<li>Layer costume shell</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="projects" id="projects">
+			<header>
+				<p class="eyebrow">Workshops & Labs</p>
+				<h2>Project-ready arcs that flex to your schedule.</h2>
+				<p>
+					Every lab blends artful narrative hooks with electronics literacy. Swap sensors, remix the story, and
+					redeploy the same kit for multiple cohorts.
+				</p>
+			</header>
+			<div class="card-grid">
+				{projectCards.map((project) => (
+					<article class="project-card">
+						<div class="project-card__meta">
+							<span>{project.focus}</span>
+							<span>{project.duration}</span>
+						</div>
+						<h3>{project.title}</h3>
+						<p>{project.description}</p>
+						<ul>
+							{project.kits.map((kit) => (
+								<li>{kit}</li>
+							))}
+						</ul>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="kits" id="kits">
+			<div class="kits__intro">
+				<div>
+					<p class="eyebrow">Kit Families</p>
+					<h2>Electronics bins curated for playful learning.</h2>
+					<p>
+						Mix hardware with craft supplies so every build feels bespoke. Each family includes wiring cards,
+						reset rituals, and maintenance notes.
+					</p>
+				</div>
+				<div class="kits__note">
+					<strong>Tip</strong>
+					<p>Label totes with verbs (glow, sense, move) to guide learner choice instead of prescribing builds.</p>
+				</div>
+			</div>
+			<div class="kit-grid">
+				{kitList.map((kit) => (
+					<div class="kit-card" style={{ '--chip-color': kit.color }}>
+						<h3>{kit.name}</h3>
+						<p class="kit-card__chips">{kit.chips}</p>
+						<p>{kit.useCase}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="timeline" id="curriculum">
+			<header>
+				<p class="eyebrow">Curriculum Flow</p>
+				<h2>Guide learners from spark to showcase.</h2>
+			</header>
+			<ol>
+				{timeline.map((step, index) => (
+					<li>
+						<div class="dot">{index + 1}</div>
+						<div>
+							<h3>{step.phase}</h3>
+							<p class="theme">{step.theme}</p>
+							<p class="outputs">{step.outputs}</p>
+						</div>
+					</li>
+				))}
+			</ol>
+		</section>
+
+		<section class="resources" id="resources">
+			<header>
+				<p class="eyebrow">Downloads & Support</p>
+				<h2>Everything you need to launch tomorrow.</h2>
+			</header>
+			<div class="resource-grid">
+				{resourceHighlights.map((resource) => (
+					<article>
+						<h3>{resource.title}</h3>
+						<p>{resource.copy}</p>
+						<a href={resource.link}>Request access →</a>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="cta" id="connect">
+			<div>
+				<p class="eyebrow">Bring it to your community</p>
+				<h2>Need custom standards alignment or a pop-up studio plan?</h2>
+				<p>
+					Share your district goals and we will co-design a pathway that blends OttoNinja builds with your
+					existing media, fabrication, or CTE spaces.
+				</p>
+			</div>
+			<a class="solid" href="mailto:hello@rebooted.education">Start a project brief</a>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	:global(body) {
+		background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.25), transparent 45%)
+			0 0 / 240px 240px,
+			var(--page-surface);
+	}
+
+	.site {
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
+		padding: clamp(1.75rem, 3vw, 3rem) clamp(1rem, 5vw, 5rem) 4rem;
+	}
+
+	section {
+		background: rgba(255, 255, 255, 0.07);
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: 28px;
+		padding: clamp(1.75rem, 2vw, 2.5rem);
+		box-shadow: 0 30px 80px rgba(15, 29, 49, 0.18);
+		scroll-margin-top: 140px;
+	}
+
+	.hero {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		align-items: center;
+		gap: 2rem;
+		background: radial-gradient(circle at 15% 30%, rgba(255, 255, 255, 0.25), transparent 55%),
+			linear-gradient(125deg, rgba(255, 165, 117, 0.4), rgba(93, 224, 182, 0.25));
+	}
+
+	.hero__content h1 {
+		font-size: clamp(2.4rem, 4vw, 3.3rem);
+		line-height: 1.15;
+		margin: 0.35rem 0 1rem;
+	}
+
+	.eyebrow {
+		font-size: 0.85rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--text-soft);
+		margin: 0;
+	}
+
+	.lede {
+		font-size: 1.1rem;
+		max-width: 520px;
+		color: var(--text-muted);
+	}
+
+	.hero__cta {
+		margin: 1.5rem 0 1.75rem;
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.solid,
+	.ghost {
+		border-radius: 999px;
+		padding: 0.8rem 1.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		transition: transform 220ms ease, box-shadow 220ms ease;
+	}
+
+	.solid {
+		background: linear-gradient(120deg, #f76b1c, #7f5dff);
+		color: #0f1d31;
+		box-shadow: 0 12px 30px rgba(247, 107, 28, 0.35);
+	}
+
+	.solid:hover,
+	.ghost:hover {
+		transform: translateY(-2px) scale(1.01);
+	}
+
+	.ghost {
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		color: white;
+	}
+
+	.hero__stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		gap: 1rem;
+	}
+
+	.hero__stats strong {
+		display: block;
+		font-size: 1.75rem;
+		color: white;
+	}
+
+	.hero__stats span {
+		color: var(--text-soft);
+		font-size: 0.92rem;
+	}
+
+	.hero__panel {
+		background: rgba(6, 10, 25, 0.65);
+		border-radius: 24px;
+		padding: 1.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		position: relative;
+		overflow: hidden;
+		animation: float 6s ease-in-out infinite;
+	}
+
+	.hero__panel::after {
+		content: '';
+		position: absolute;
+		right: -40px;
+		top: -40px;
+		width: 160px;
+		height: 160px;
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+		filter: blur(20px);
+	}
+
+	.panel__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 1rem;
+	}
+
+	.panel__card {
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 20px;
+		padding: 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.panel__card--accent {
+		background: linear-gradient(160deg, rgba(125, 242, 194, 0.2), rgba(255, 255, 255, 0.05));
+	}
+
+	.panel__label {
+		font-size: 0.9rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-soft);
+		margin: 0 0 0.5rem;
+	}
+
+	.panel__card output,
+	.panel__card li {
+		font-family: 'Space Grotesk', sans-serif;
+		font-size: 0.95rem;
+		color: white;
+	}
+
+	.checklist li::before {
+		content: '▹';
+		color: #7ef0c4;
+		margin-right: 0.35rem;
+	}
+
+	.projects header,
+	.kits__intro,
+	.timeline header,
+	.resources header {
+		margin-bottom: 1.5rem;
+	}
+
+	.projects header p,
+	.kits__intro p,
+	.timeline header p,
+	.resources header p {
+		max-width: 640px;
+	}
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.project-card {
+		background: rgba(10, 15, 32, 0.75);
+		border-radius: 24px;
+		padding: 1.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+	}
+
+	.project-card__meta {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-soft);
+	}
+
+	.project-card h3 {
+		margin: 0.75rem 0 0.35rem;
+	}
+
+	.project-card p {
+		color: var(--text-muted);
+	}
+
+	.project-card ul {
+		margin: 1rem 0 0;
+		padding-left: 1.1rem;
+		color: white;
+	}
+
+	.kits {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.kits__intro {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.kits__note {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 20px;
+		padding: 1.25rem;
+	}
+
+	.kit-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+	}
+
+	.kit-card {
+		border-radius: 18px;
+		padding: 1.25rem;
+		background: var(--chip-color);
+		color: #06101f;
+	}
+
+	@supports (background: color-mix(in srgb, red, blue)) {
+		.kit-card {
+			background: color-mix(in srgb, var(--chip-color), rgba(17, 29, 49, 0.6));
+		}
+	}
+
+	.kit-card__chips {
+		font-weight: 600;
+	}
+
+	.timeline ol {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1rem;
+	}
+
+	.timeline li {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1rem;
+		align-items: start;
+		padding: 1.25rem;
+		background: rgba(9, 13, 28, 0.65);
+		border-radius: 18px;
+	}
+
+	.dot {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 999px;
+		background: linear-gradient(120deg, #ffcb3d, #ff7bc6);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		color: #0d1425;
+	}
+
+	.theme {
+		color: var(--text-muted);
+		margin: 0.25rem 0;
+	}
+
+	.outputs {
+		color: var(--text-soft);
+		margin: 0;
+	}
+
+	.resource-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1rem;
+	}
+
+	.resources article {
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 20px;
+		padding: 1.5rem;
+	}
+
+	.resources a {
+		color: #7ef0c4;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.cta {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		background: linear-gradient(150deg, rgba(255, 255, 255, 0.15), rgba(126, 240, 196, 0.25));
+	}
+
+	@keyframes float {
+		0% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-8px);
+		}
+		100% {
+			transform: translateY(0px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero__panel {
+			animation: none;
+		}
+		.solid,
+		.ghost {
+			transition: none;
+		}
+	}
+</style>

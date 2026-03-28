@@ -1,0 +1,24 @@
+{
+  "name": "rebooted-creative-lab",
+  "description": "Creative education site for OttoNinja kits and resources.",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=20.11.1"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.1.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  }
+}

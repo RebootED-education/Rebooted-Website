@@ -1,0 +1,300 @@
+---
+const {
+	title = 'Rebooted Creative Lab',
+	description = 'Creative education pathways that blend OttoNinja, small electronics, and playful curriculum.',
+} = Astro.props;
+
+const assetBase = import.meta.env.BASE_URL ?? '/';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="icon" type="image/svg+xml" href={`${assetBase}favicon.svg`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+		/>
+	</head>
+	<body>
+		<div class="backdrop" aria-hidden="true"></div>
+		<header class="site-header">
+			<a class="site-header__brand" href="#hero" aria-label="Rebooted Creative Lab">
+				<span class="site-header__dot" aria-hidden="true"></span>
+				<div>
+					<strong>Rebooted Creative Lab</strong>
+					<span>OttoNinja studios &amp; kits</span>
+				</div>
+			</a>
+			<nav aria-label="Primary site sections">
+				<a href="#projects">Labs</a>
+				<a href="#kits">Kit families</a>
+				<a href="#curriculum">Curriculum</a>
+				<a href="#resources">Resources</a>
+				<a href="#connect">Contact</a>
+			</nav>
+			<a class="site-header__cta" href="#connect">Start a project brief</a>
+		</header>
+		<slot />
+		<footer class="site-footer" id="footer">
+			<div class="site-footer__brand">
+				<p class="site-footer__eyebrow">Rebooted Creative Lab</p>
+				<p>
+					We co-design OttoNinja-powered residencies, pop-up labs, and educator coaching so robotics feels like a
+					studio residency instead of a rigid kit demo.
+				</p>
+			</div>
+			<div class="site-footer__grid">
+				<div>
+					<h3>Studio tracks</h3>
+					<ul>
+						<li><a href="#projects">Workshop arcs</a></li>
+						<li><a href="#kits">Kit curation</a></li>
+						<li><a href="#curriculum">District pilots</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3>Resource vault</h3>
+					<ul>
+						<li><a href="#resources">Curriculum maps</a></li>
+						<li><a href="#resources">Facilitator playbook</a></li>
+						<li><a href="#resources">Parts illustrator files</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3>Connect</h3>
+					<ul>
+						<li><a href="mailto:hello@rebooted.education">hello@rebooted.education</a></li>
+						<li><a href="#connect">Share your goals</a></li>
+						<li><span>Studios pop up across schools, museums, and makerspaces.</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="site-footer__meta">
+				<span>© 2026 Rebooted Education</span>
+				<span>Brooklyn · Detroit · Remote</span>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style>
+	:global(:root) {
+		--page-surface: #040b16;
+		--text-base: #f5f7fb;
+		--text-muted: #c7d4ff;
+		--text-soft: #9db0c7;
+		font-family: 'Sora', 'Space Grotesk', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		margin: 0;
+		min-height: 100%;
+		background: radial-gradient(circle at 10% 20%, rgba(111, 194, 255, 0.15), transparent 45%), #02060d;
+		color: var(--text-base);
+	}
+
+	body {
+		position: relative;
+		padding-bottom: 3rem;
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		background-image: url('data:image/svg+xml,%3Csvg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-opacity="0.08"%3E%3Cpath d="M80 0h1v160h-1z"/%3E%3Cpath d="M0 80h160v1H0z"/%3E%3C/g%3E%3C/svg%3E');
+		pointer-events: none;
+		mix-blend-mode: soft-light;
+		opacity: 0.35;
+	}
+
+	.backdrop {
+		position: fixed;
+		inset: 0;
+		background: radial-gradient(circle at 80% 0%, rgba(255, 159, 120, 0.25), transparent 45%),
+			radial-gradient(circle at 0% 100%, rgba(111, 224, 182, 0.2), transparent 40%);
+		z-index: -2;
+	}
+
+	.site-header {
+		position: sticky;
+		top: 1rem;
+		margin: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 5vw, 5rem) 0;
+		padding: 0.85rem clamp(1rem, 2.5vw, 2rem);
+		border-radius: 999px;
+		background: rgba(2, 6, 13, 0.82);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		box-shadow: 0 25px 60px rgba(1, 6, 17, 0.45);
+		backdrop-filter: blur(18px);
+		display: flex;
+		align-items: center;
+		gap: clamp(0.65rem, 2vw, 1.5rem);
+		flex-wrap: wrap;
+		justify-content: center;
+		z-index: 10;
+	}
+
+	.site-header__brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		text-decoration: none;
+		color: var(--text-base);
+		min-width: max-content;
+	}
+
+	.site-header__brand div {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.15;
+	}
+
+	.site-header__brand strong {
+		font-size: 1rem;
+	}
+
+	.site-header__brand div span {
+		font-size: 0.75rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--text-soft);
+	}
+
+	.site-header__dot {
+		width: 0.8rem;
+		height: 0.8rem;
+		border-radius: 999px;
+		background: linear-gradient(120deg, #f76b1c, #7ef0c4);
+		box-shadow: 0 0 18px rgba(126, 240, 196, 0.6);
+	}
+
+	.site-header nav {
+		display: flex;
+		gap: 1rem;
+		flex: 1 1 240px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.site-header nav a {
+		text-decoration: none;
+		color: var(--text-soft);
+		font-size: 0.92rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: color 180ms ease, transform 180ms ease;
+	}
+
+	.site-header nav a:hover,
+	.site-header nav a:focus-visible {
+		color: var(--text-base);
+		transform: translateY(-1px);
+	}
+
+	.site-header__cta {
+		text-decoration: none;
+		background: linear-gradient(120deg, #f76b1c, #7f5dff);
+		color: #0f1d31;
+		font-weight: 600;
+		padding: 0.65rem 1.3rem;
+		border-radius: 999px;
+		box-shadow: 0 14px 28px rgba(127, 93, 255, 0.35);
+		transition: transform 180ms ease;
+		flex-shrink: 0;
+	}
+
+	.site-header__cta:hover,
+	.site-header__cta:focus-visible {
+		transform: translateY(-2px);
+	}
+
+	.site-footer {
+		margin: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 5vw, 5rem) 3rem;
+		padding: clamp(1.75rem, 3vw, 3rem);
+		border-radius: 36px;
+		background: linear-gradient(150deg, rgba(110, 227, 190, 0.18), rgba(255, 151, 190, 0.12));
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		box-shadow: 0 30px 80px rgba(4, 7, 20, 0.35);
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	.site-footer__brand p {
+		margin: 0;
+		color: var(--text-muted);
+	}
+
+	.site-footer__eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		font-size: 0.78rem;
+		color: var(--text-soft);
+		margin-bottom: 0.5rem;
+	}
+
+	.site-footer__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.site-footer h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1rem;
+	}
+
+	.site-footer ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.site-footer a {
+		color: #7ef0c4;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.site-footer__grid span {
+		color: var(--text-soft);
+		font-size: 0.95rem;
+	}
+
+	.site-footer__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		color: var(--text-soft);
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 640px) {
+		.site-header {
+			border-radius: 28px;
+		}
+		.site-header__cta {
+			width: 100%;
+			text-align: center;
+		}
+		.site-footer {
+			border-radius: 28px;
+		}
+	}
+</style>
