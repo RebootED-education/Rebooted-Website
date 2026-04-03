@@ -15,8 +15,6 @@ const languages = [
 	{ id: 'fr', label: 'FR', name: 'Français' },
 ];
 
-const defaultLanguage = 'nl';
-
 const navLinks = [
 	{ href: '#projects', label: { nl: 'Labs', en: 'Labs', es: 'Laboratorios', fr: 'Laboratoires' } },
 	{ href: '#stories', label: { nl: 'Veldnotities', en: 'Field notes', es: 'Notas de campo', fr: 'Notes de terrain' } },
@@ -170,7 +168,7 @@ const navLinks = [
 				const html = document.documentElement;
 				const select = document.querySelector('[data-language-select]');
 				const stored = localStorage.getItem('rebooted-lang');
-				const initial = stored || html.lang || '${defaultLanguage}';
+				const initial = stored || html.lang || 'nl';
 				html.lang = initial;
 				if (select) {
 					select.value = initial;
