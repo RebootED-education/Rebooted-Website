@@ -1,10 +1,31 @@
 ---
+import I18nText from '../components/I18nText.astro';
+
 const {
 	title = 'Rebooted Creative Lab',
 	description = 'Creative education pathways that blend OttoNinja, small electronics, and playful curriculum.',
 } = Astro.props;
 
 const assetBase = import.meta.env.BASE_URL ?? '/';
+
+const languages = [
+	{ id: 'nl', label: 'NL', name: 'Nederlands' },
+	{ id: 'en', label: 'EN', name: 'English' },
+	{ id: 'es', label: 'ES', name: 'Español' },
+	{ id: 'fr', label: 'FR', name: 'Français' },
+];
+
+const defaultLanguage = 'nl';
+
+const navLinks = [
+	{ href: '#projects', label: { nl: 'Labs', en: 'Labs', es: 'Laboratorios', fr: 'Laboratoires' } },
+	{ href: '#stories', label: { nl: 'Veldnotities', en: 'Field notes', es: 'Notas de campo', fr: 'Notes de terrain' } },
+	{ href: '#kits', label: { nl: 'Kitfamilies', en: 'Kit families', es: 'Familias de kits', fr: 'Familles de kits' } },
+	{ href: '#curriculum', label: { nl: 'Leerroute', en: 'Curriculum', es: 'Hoja curricular', fr: 'Parcours pédagogique' } },
+	{ href: '#support', label: { nl: 'Ondersteuning', en: 'Support', es: 'Acompañamiento', fr: 'Accompagnement' } },
+	{ href: '#resources', label: { nl: 'Materialen', en: 'Resources', es: 'Recursos', fr: 'Ressources' } },
+	{ href: '#connect', label: { nl: 'Contact', en: 'Contact', es: 'Contacto', fr: 'Contact' } },
+];
 ---
 
 <!doctype html>
@@ -29,61 +50,138 @@ const assetBase = import.meta.env.BASE_URL ?? '/';
 			<a class="site-header__brand" href="#hero" aria-label="Rebooted Creative Lab">
 				<span class="site-header__dot" aria-hidden="true"></span>
 				<div>
-					<strong>Rebooted Creative Lab</strong>
-					<span>OttoNinja studios &amp; kits</span>
+					<strong data-i18n>
+						<I18nText translations={{ nl: 'Rebooted Creative Lab NL', en: 'Rebooted Creative Lab NL', es: 'Rebooted Creative Lab NL', fr: 'Rebooted Creative Lab NL' }} />
+					</strong>
+					<span data-i18n>
+						<I18nText
+							translations={{
+								nl: "Studio's &amp; kits in Nederland",
+								en: 'Studios & kits in the Netherlands',
+								es: 'Studios y kits en los Países Bajos',
+								fr: 'Studios & kits aux Pays-Bas',
+							}}
+						/>
+					</span>
 				</div>
 			</a>
 			<nav aria-label="Primary site sections">
-				<a href="#projects">Labs</a>
-				<a href="#stories">Field notes</a>
-				<a href="#kits">Kit families</a>
-				<a href="#curriculum">Curriculum</a>
-				<a href="#support">Support</a>
-				<a href="#resources">Resources</a>
-				<a href="#connect">Contact</a>
+				{navLinks.map((link) => (
+					<a href={link.href} data-i18n>
+						<I18nText translations={link.label} />
+					</a>
+				))}
 			</nav>
-			<a class="site-header__cta" href="#connect">Start a project brief</a>
+			<div class="language-picker">
+				<label class="visually-hidden" for="language-select" data-i18n>
+					<I18nText translations={{ nl: 'Kies een taal', en: 'Choose a language', es: 'Elige un idioma', fr: 'Choisissez une langue' }} />
+				</label>
+				<select id="language-select" data-language-select aria-label="Language selector">
+					{languages.map((lang) => (
+						<option value={lang.id}>{lang.label}</option>
+					))}
+				</select>
+			</div>
+			<a class="site-header__cta" href="#connect" data-i18n>
+				<I18nText translations={{ nl: 'Start een projectbrief', en: 'Start a project brief', es: 'Inicia un brief de proyecto', fr: 'Démarrer un brief de projet' }} />
+			</a>
 		</header>
 		<slot />
 		<footer class="site-footer" id="footer">
 			<div class="site-footer__brand">
-				<p class="site-footer__eyebrow">Rebooted Creative Lab</p>
-				<p>
-					We co-design OttoNinja-powered residencies, pop-up labs, and educator coaching so robotics feels like a
-					studio residency instead of a rigid kit demo.
+				<p class="site-footer__eyebrow" data-i18n>
+					<I18nText translations={{ nl: 'Rebooted Creative Lab NL', en: 'Rebooted Creative Lab NL', es: 'Rebooted Creative Lab NL', fr: 'Rebooted Creative Lab NL' }} />
+				</p>
+				<p data-i18n>
+					<I18nText
+						translations={{
+							nl: 'We co-designen OttoNinja-residenties, pop-uplabs en coaching voor scholen in Nederland zodat robotica aanvoelt als een creatieve studio.',
+							en: 'We co-design OttoNinja residencies, pop-up labs, and coaching for schools across the Netherlands so robotics feels like a creative studio.',
+							es: 'Codiseñamos residencias OttoNinja, laboratorios pop-up y coaching para escuelas en los Países Bajos para que la robótica se sienta como un estudio creativo.',
+							fr: 'Nous co-concevons des résidences OttoNinja, des labs éphémères et du coaching pour les écoles aux Pays-Bas afin que la robotique ressemble à un studio créatif.',
+						}}
+					/>
 				</p>
 			</div>
 			<div class="site-footer__grid">
 				<div>
-					<h3>Studio tracks</h3>
+					<h3 data-i18n>
+						<I18nText translations={{ nl: 'Studio trajecten', en: 'Studio tracks', es: 'Trayectorias de estudio', fr: 'Parcours studio' }} />
+					</h3>
 					<ul>
-						<li><a href="#projects">Workshop arcs</a></li>
-						<li><a href="#kits">Kit curation</a></li>
-						<li><a href="#curriculum">District pilots</a></li>
+						<li>
+							<a href="#projects" data-i18n>
+								<I18nText translations={{ nl: 'Workshopreeksen', en: 'Workshop arcs', es: 'Series de talleres', fr: 'Séries d’ateliers' }} />
+							</a>
+						</li>
+						<li>
+							<a href="#kits" data-i18n>
+								<I18nText translations={{ nl: 'Kitcuratie', en: 'Kit curation', es: 'Curación de kits', fr: 'Curation de kits' }} />
+							</a>
+						</li>
+						<li>
+							<a href="#curriculum" data-i18n>
+								<I18nText translations={{ nl: "Pilotprogramma's", en: 'Pilot programs', es: 'Programas piloto', fr: 'Programmes pilotes' }} />
+							</a>
+						</li>
 					</ul>
 				</div>
 				<div>
-					<h3>Resource vault</h3>
+					<h3 data-i18n>
+						<I18nText translations={{ nl: 'Resourcekluis', en: 'Resource vault', es: 'Bóveda de recursos', fr: 'Coffre de ressources' }} />
+					</h3>
 					<ul>
-						<li><a href="#resources">Curriculum maps</a></li>
-						<li><a href="#resources">Facilitator playbook</a></li>
-						<li><a href="#resources">Parts illustrator files</a></li>
+						<li><a href="#resources" data-i18n><I18nText translations={{ nl: 'Leerlijnen', en: 'Curriculum maps', es: 'Mapas curriculares', fr: 'Cartes curriculaires' }} /></a></li>
+						<li><a href="#resources" data-i18n><I18nText translations={{ nl: 'Facilitator playbook', en: 'Facilitator playbook', es: 'Manual del facilitador', fr: 'Guide du facilitateur' }} /></a></li>
+						<li><a href="#resources" data-i18n><I18nText translations={{ nl: 'Onderdelenbestanden', en: 'Parts illustrator files', es: 'Archivos de piezas', fr: 'Fichiers de pièces' }} /></a></li>
 					</ul>
 				</div>
 				<div>
-					<h3>Connect</h3>
+					<h3 data-i18n>
+						<I18nText translations={{ nl: 'Contact', en: 'Connect', es: 'Conectar', fr: 'Contact' }} />
+					</h3>
 					<ul>
 						<li><a href="mailto:hello@rebooted.education">hello@rebooted.education</a></li>
-						<li><a href="#connect">Share your goals</a></li>
-						<li><span>Studios pop up across schools, museums, and makerspaces.</span></li>
+						<li><a href="#connect" data-i18n><I18nText translations={{ nl: 'Deel je doelen', en: 'Share your goals', es: 'Comparte tus objetivos', fr: 'Partagez vos objectifs' }} /></a></li>
+						<li>
+							<span data-i18n>
+								<I18nText
+									translations={{
+									nl: "Studio's verschijnen op scholen, musea en maakplaatsen in Nederland.",
+									en: 'Studios pop up across schools, museums, and makerspaces in the Netherlands.',
+									es: 'Los estudios aparecen en escuelas, museos y makerspaces en los Países Bajos.',
+									fr: 'Des studios apparaissent dans les écoles, musées et fablabs aux Pays-Bas.',
+								}}
+								/>
+							</span>
+						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="site-footer__meta">
 				<span>© 2026 Rebooted Education</span>
-				<span>Brooklyn · Detroit · Remote</span>
+				<span data-i18n>
+					<I18nText translations={{ nl: 'Amsterdam · Rotterdam · Remote NL', en: 'Amsterdam · Rotterdam · Remote NL', es: 'Ámsterdam · Róterdam · Remoto NL', fr: 'Amsterdam · Rotterdam · Remote NL' }} />
+				</span>
 			</div>
 		</footer>
+		<script is:inline>
+			document.addEventListener('DOMContentLoaded', () => {
+				const html = document.documentElement;
+				const select = document.querySelector('[data-language-select]');
+				const stored = localStorage.getItem('rebooted-lang');
+				const initial = stored || html.lang || '${defaultLanguage}';
+				html.lang = initial;
+				if (select) {
+					select.value = initial;
+					select.addEventListener('change', (event) => {
+						const value = event.target.value;
+						html.lang = value;
+						localStorage.setItem('rebooted-lang', value);
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
 
@@ -94,6 +192,28 @@ const assetBase = import.meta.env.BASE_URL ?? '/';
 		--text-muted: #c7d4ff;
 		--text-soft: #9db0c7;
 		font-family: 'Sora', 'Space Grotesk', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+	}
+
+	:global([data-i18n] > [lang]) {
+		display: none;
+	}
+
+	:global(html:lang(nl) [data-i18n] > [lang='nl']),
+	:global(html:lang(en) [data-i18n] > [lang='en']),
+	:global(html:lang(es) [data-i18n] > [lang='es']),
+	:global(html:lang(fr) [data-i18n] > [lang='fr']) {
+		display: inline;
+	}
+
+	:global(.visually-hidden) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
 	}
 
 	* {
@@ -189,6 +309,23 @@ const assetBase = import.meta.env.BASE_URL ?? '/';
 		flex: 1 1 240px;
 		flex-wrap: wrap;
 		justify-content: center;
+	}
+
+	.language-picker {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	.language-picker select {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 999px;
+		color: var(--text-base);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		padding: 0.35rem 0.9rem;
+		appearance: none;
 	}
 
 	.site-header nav a {

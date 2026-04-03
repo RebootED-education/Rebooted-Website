@@ -1,184 +1,484 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import I18nText from '../components/I18nText.astro';
+
+const text = (nl, en, es, fr) => ({ nl, en, es, fr });
+
+const heroCopy = {
+	eyebrow: text('Creatieve educatie × OttoNinja', 'Creative education × OttoNinja', 'Educación creativa × OttoNinja', 'Éducation créative × OttoNinja'),
+	heading: text(
+		'Ontwerp leeravonturen waar robotica, kunst en kleine elektronica samenkomen tot toekomstklare skills.',
+		'Design learning adventures where robotics, art, and small electronics remix into future-ready skills.',
+		'Diseña aventuras de aprendizaje donde la robótica, el arte y la electrónica se combinan en habilidades preparadas para el futuro.',
+		'Dessinez des aventures d’apprentissage où robotique, art et petite électronique fusionnent en compétences d’avenir.',
+	),
+	lede: text(
+		'Rebooted Creative Lab bundelt OttoNinja-builds, printbare uitdagingen en curaties zodat elke sessie voelt als een speelse studio-residentie.',
+		'The Rebooted Creative Lab bundles OttoNinja builds, printable challenges, and curated kits so every session feels like a playful studio residency.',
+		'El Rebooted Creative Lab reúne construcciones de OttoNinja, retos imprimibles y kits curados para que cada sesión se sienta como una residencia creativa.',
+		'Le Rebooted Creative Lab réunit les constructions OttoNinja, des défis imprimables et des kits sélectionnés pour que chaque séance ressemble à une résidence de studio.',
+	),
+	ctaSolid: text('Plan een workshop', 'Plan a workshop', 'Planifica un taller', 'Planifier un atelier'),
+	ctaGhost: text('Bekijk materialen', 'Browse resources', 'Explora recursos', 'Explorer les ressources'),
+	stats: [
+		{ value: '120+', label: text('Gedocumenteerde studentuitvindingen', 'Student inventions documented', 'Invenciones estudiantiles documentadas', 'Inventions d’élèves documentées') },
+		{ value: '18', label: text('Kant-en-klare lessen', 'Ready-to-run lesson arcs', 'Secuencias listas para usar', 'Parcours prêts à l’emploi') },
+		{ value: '4', label: text('Kitfamilies om te mixen', 'Kit families to mix + match', 'Familias de kits para mezclar', 'Familles de kits à combiner') },
+	],
+};
+
+const heroPanel = {
+	liveFeedLabel: text('Live sensorfeed', 'Live sensor feed', 'Lectura de sensores en vivo', 'Flux de capteurs en direct'),
+	liveOutputs: [
+		text('Afstand: 18 cm', 'Distance: 18 cm', 'Distancia: 18 cm', 'Distance : 18 cm'),
+		text('Licht: 72%', 'Light: 72%', 'Luz: 72%', 'Lumière : 72 %'),
+		text('Geluid: 48 dB', 'Sound: 48 dB', 'Sonido: 48 dB', 'Son : 48 dB'),
+	],
+	presetLabel: text('Showcase-preset', 'Showcase preset', 'Preset de exhibición', 'Préréglage vitrine'),
+	presetItems: [
+		text('Glow choreografie', 'Glow trail choreography', 'Coreografía luminosa', 'Chorégraphie lumineuse'),
+		text('Wearable cue-sync', 'Wearable cue sync', 'Sincronía de wearables', 'Synchronisation des wearables'),
+		text('Publieks-QR remix', 'Audience remix QR', 'QR de remix para la audiencia', 'QR de remix pour le public'),
+	],
+	checklistLabel: text('Bouwchecklist', 'Build checklist', 'Lista de construcción', 'Liste de montage'),
+	checklistItems: [
+		text('Klik OttoNinja-benen vast', 'Snap OttoNinja legs', 'Encaja las patas de OttoNinja', 'Fixer les jambes OttoNinja'),
+		text('Flash bewegingsscript', 'Flash motion script', 'Carga el script de movimiento', 'Flasher le script de mouvement'),
+		text('Plaats kostuumschil', 'Layer costume shell', 'Coloca la carcasa de disfraz', 'Ajouter la coque costume'),
+	],
+};
 
 const projectCards = [
 	{
-		title: 'OttoNinja Motion Lab',
-		focus: 'Robotics + Block Coding',
-		duration: '2 week sprint',
-		kits: ['OttoNinja chassis', 'micro:bit or Nano', 'Ultrasonic rangefinder'],
-		description:
+		title: text('OttoNinja Motion Lab', 'OttoNinja Motion Lab', 'Laboratorio de Movimiento OttoNinja', 'Atelier de mouvement OttoNinja'),
+		focus: text('Robotica + blokcodering', 'Robotics + Block Coding', 'Robótica + programación con bloques', 'Robotique + programmation par blocs'),
+		duration: text('2-week sprint', '2 week sprint', 'Sprint de 2 semanas', 'Sprint de 2 semaines'),
+		kits: [
+			text('OttoNinja-chassis', 'OttoNinja chassis', 'Chasis OttoNinja', 'Châssis OttoNinja'),
+			text('micro:bit of Nano', 'micro:bit or Nano', 'micro:bit o Nano', 'micro:bit ou Nano'),
+			text('Ultrasone afstandssensor', 'Ultrasonic rangefinder', 'Sensor ultrasónico', 'Télémètre ultrasonique'),
+		],
+		description: text(
+			'Leerlingen remixen OttoNinja-bewegingen met verhaalkaarten en bouwen missies die reageren op nabijheidsdata.',
 			'Students remix OttoNinja moves using story cards, then prototype stealthy missions that react to proximity data.',
+			'El alumnado remezcla movimientos de OttoNinja con cartas de historia y prototipa misiones sigilosas que reaccionan a la proximidad.',
+			'Les élèves remixent les mouvements d’OttoNinja avec des cartes d’histoire puis prototypent des missions furtives réactives aux capteurs.',
+		),
 	},
 	{
-		title: 'Wearable Sparks Studio',
-		focus: 'Soft Circuits + Storytelling',
-		duration: '5 session mini-lab',
-		kits: ['Conductive thread', 'LED sequins', 'Otto pulse board'],
-		description:
+		title: text('Wearable Sparks Studio', 'Wearable Sparks Studio', 'Estudio Chispas Portables', 'Studio Étincelles Portables'),
+		focus: text('Zachte circuits + storytelling', 'Soft Circuits + Storytelling', 'Circuitos suaves + narrativa', 'Circuits souples + narration'),
+		duration: text('5 sessies mini-lab', '5 session mini-lab', 'Mini laboratorio de 5 sesiones', 'Mini-lab de 5 sessions'),
+		kits: [
+			text('Geleidend garen', 'Conductive thread', 'Hilo conductor', 'Fil conducteur'),
+			text('LED-pailletten', 'LED sequins', 'Lentejuelas LED', 'Paillettes LED'),
+			text('Otto pulse board', 'Otto pulse board', 'Placa Otto Pulse', 'Carte Otto Pulse'),
+		],
+		description: text(
+			'Ontwerp verhalende badges waar licht emoties toont; leerlingen stikken circuits en documenteren tests met korte prompts.',
 			'Design narrative badges where light signals emotions. Learners stitch circuits and document testing with quick-reel prompts.',
+			'Diseña insignias narrativas donde la luz expresa emociones; el alumnado cose circuitos y documenta pruebas con prompts rápidos.',
+			'Dessinez des badges narratifs où la lumière traduit les émotions; les élèves cousent des circuits et documentent les tests avec des invites rapides.',
+		),
 	},
 	{
-		title: 'Sonic Playground Capsules',
-		focus: 'Sensors + Creative Audio',
-		duration: 'Weekend jam',
-		kits: ['ESP32 audio wing', 'Piezo discs', '3D printed pod'],
-		description:
+		title: text('Sonic Playground Capsules', 'Sonic Playground Capsules', 'Cápsulas de Patio Sonoro', 'Capsules Sonic Playground'),
+		focus: text('Sensoren + creatieve audio', 'Sensors + Creative Audio', 'Sensores + audio creativo', 'Capteurs + audio créatif'),
+		duration: text('Weekend-jam', 'Weekend jam', 'Jam de fin de semana', 'Jam du week-end'),
+		kits: [
+			text('ESP32-audiowing', 'ESP32 audio wing', 'Módulo de audio ESP32', 'Carte audio ESP32'),
+			text('Piëzo-schijven', 'Piezo discs', 'Discos piezoeléctricos', 'Disques piézo'),
+			text('3D-geprinte pod', '3D printed pod', 'Cápsula impresa en 3D', 'Capsule imprimée en 3D'),
+		],
+		description: text(
+			'Ontdek speelse inputs; elke pod wordt een ambient instrument dat OttoNinja gebruikt voor beweging-gestuurde beats.',
 			'Explore playful inputs. Each pod becomes an ambient instrument that can plug into OttoNinja for motion-tracked beats.',
+			'Explora entradas lúdicas; cada cápsula se vuelve un instrumento ambiental que conecta con OttoNinja para ritmos con movimiento.',
+			'Explorez des entrées ludiques; chaque capsule devient un instrument ambiant branché sur OttoNinja pour des rythmes suivis en mouvement.',
+		),
 	},
 ];
 
 const kitList = [
 	{
-		name: 'Starter Core',
-		chips: 'OttoNinja servo board + Arduino Nano',
-		useCase: 'Perfect for first builds, movement experiments, and classroom debugging tips.',
+		name: text('Starter Core', 'Starter Core', 'Starter Core', 'Starter Core'),
+		chips: text('OttoNinja-servo + Arduino Nano', 'OttoNinja servo board + Arduino Nano', 'Servo OttoNinja + Arduino Nano', 'Carte servo OttoNinja + Arduino Nano'),
+		useCase: text(
+			'Ideaal voor eerste builds, bewegingsexperimenten en debugtips in de klas.',
+			'Perfect for first builds, movement experiments, and classroom debugging tips.',
+			'Perfecto para primeras construcciones, experimentos de movimiento y consejos de depuración en clase.',
+			'Parfait pour les premiers montages, les expériences de mouvement et les astuces de débogage en classe.',
+		),
 		color: '#F7C245',
 	},
 	{
-		name: 'Explorer Signals',
-		chips: 'Sensor ribbon + plug-and-learn adapters',
-		useCase: 'Introduce ultrasonic, light, and capacitive sensing without rewiring every lesson.',
+		name: text('Explorer Signals', 'Explorer Signals', 'Explorer Signals', 'Explorer Signals'),
+		chips: text('Sensorlint + plug-and-learn adapters', 'Sensor ribbon + plug-and-learn adapters', 'Cinta de sensores + adaptadores plug-and-learn', 'Ruban de capteurs + adaptateurs plug-and-learn'),
+		useCase: text(
+			'Introduceer ultrasoon, licht- en capacitief meten zonder elke les te herbedraden.',
+			'Introduce ultrasonic, light, and capacitive sensing without rewiring every lesson.',
+			'Introduce sensores ultrasónicos, de luz y capacitivos sin recablear cada sesión.',
+			'Introduisez des capteurs ultrasoniques, lumineux et capacitifs sans recâbler chaque séance.',
+		),
 		color: '#6DE0B6',
 	},
 	{
-		name: 'Expressive Wearables',
-		chips: 'Otto pulse board + rechargeable coin cells',
-		useCase: 'Supports e-textile residencies and quick costume add-ons for showcases.',
+		name: text('Expressive Wearables', 'Expressive Wearables', 'Wearables expresivos', 'Wearables expressifs'),
+		chips: text('Otto Pulse board + oplaadbare knoopcellen', 'Otto pulse board + rechargeable coin cells', 'Placa Otto Pulse + pilas recargables', 'Carte Otto Pulse + piles bouton rechargeables'),
+		useCase: text(
+			'Ondersteunt e-textiel residenties en snelle kostuumadd-ons voor showcases.',
+			'Supports e-textile residencies and quick costume add-ons for showcases.',
+			'Soporta residencias de e-textiles y añadidos rápidos de vestuario para exhibiciones.',
+			'Soutient les résidences e-textiles et les ajouts de costumes rapides pour les showcases.',
+		),
 		color: '#8EC5FF',
 	},
 	{
-		name: 'Community Vault',
-		chips: 'Shared bins for gears, craft foam, recycled plastics',
-		useCase: 'Keeps tactile materials visible so students remix robotics with art-room leftovers.',
+		name: text('Community Vault', 'Community Vault', 'Bóveda comunitaria', 'Coffre communautaire'),
+		chips: text('Gezamenlijke bakken voor tandwielen, foam en recyclaat', 'Shared bins for gears, craft foam, recycled plastics', 'Cajas compartidas para engranajes, foam y plásticos reciclados', 'Bacs partagés pour engrenages, mousse et plastiques recyclés'),
+		useCase: text(
+			'Houdt tactiele materialen zichtbaar zodat leerlingen robotica remixen met atelierrestjes.',
+			'Keeps tactile materials visible so students remix robotics with art-room leftovers.',
+			'Mantiene materiales táctiles visibles para que el alumnado remezcle robótica con restos del taller de arte.',
+			'Garde les matériaux tactiles visibles pour que les élèves remixent la robotique avec les restes de l’atelier.',
+		),
 		color: '#FF9EC0',
 	},
 ];
 
 const timeline = [
 	{
-		phase: 'Ignite',
-		theme: 'Launch story sparks + rapid demos',
-		outputs: 'Sketchbook spreads, part passports, safety rituals',
+		phase: text('Ignite', 'Ignite', 'Encender', 'Allumer'),
+		theme: text(
+			'Lancering met storiesparks en snelle demo’s',
+			'Launch story sparks + rapid demos',
+			'Lanza chispas narrativas y demostraciones rápidas',
+			'Lancement d’histoires étincelles et démos rapides',
+		),
+		outputs: text(
+			'Schetsboekspreads, onderdeelpaspoorten, veiligheidsrituelen',
+			'Sketchbook spreads, part passports, safety rituals',
+			'Esbozos, pasaportes de piezas, rituales de seguridad',
+			'Carnets, passeports de pièces, rituels de sécurité',
+		),
 	},
 	{
-		phase: 'Explore',
-		theme: 'Mini labs focused on a single component or creative constraint',
-		outputs: 'Sensor journals, remix videos, reflection sticks',
+		phase: text('Explore', 'Explore', 'Explorar', 'Explorer'),
+		theme: text(
+			'Mini-labs rond één component of creatieve beperking',
+			'Mini labs focused on a single component or creative constraint',
+			'Minilaboratorios centrados en un componente o restricción creativa',
+			'Mini-labs axés sur un composant ou une contrainte créative',
+		),
+		outputs: text(
+			'Sensorjournalen, remixvideo’s, reflectiesticks',
+			'Sensor journals, remix videos, reflection sticks',
+			'Diarios de sensores, videos remix, bastones de reflexión',
+			'Carnets de capteurs, vidéos remix, bâtons de réflexion',
+		),
 	},
 	{
-		phase: 'Build',
-		theme: 'Team prototyping with critique loops and debugging playlists',
-		outputs: 'Showcase-ready prototype, student playbook page',
+		phase: text('Build', 'Build', 'Construir', 'Construire'),
+		theme: text(
+			'Teamprototyping met feedbackloops en debug-playlists',
+			'Team prototyping with critique loops and debugging playlists',
+			'Prototipado en equipo con bucles de crítica y listas de depuración',
+			'Prototypage en équipe avec boucles de critique et playlists de débogage',
+		),
+		outputs: text(
+			'Toonklare prototype, playbook-pagina per leerling',
+			'Showcase-ready prototype, student playbook page',
+			'Prototipo listo para exhibición, página de playbook estudiantil',
+			'Prototype prêt pour la vitrine, page de playbook élève',
+		),
 	},
 	{
-		phase: 'Amplify',
-		theme: 'Share with authentic audiences + capture evidence of learning',
-		outputs: 'Pop-up gallery, download pack, mini documentary',
+		phase: text('Amplify', 'Amplify', 'Amplificar', 'Amplifier'),
+		theme: text(
+			'Deel met echte doelgroepen en verzamel bewijsmateriaal',
+			'Share with authentic audiences + capture evidence of learning',
+			'Comparte con audiencias auténticas y captura evidencias de aprendizaje',
+			'Partage avec des publics authentiques et collecte des preuves d’apprentissage',
+		),
+		outputs: text(
+			'Pop-upgalerij, downloadpakket, mini-documentaire',
+			'Pop-up gallery, download pack, mini documentary',
+			'Galería emergente, paquete descargable, mini documental',
+			'Galerie éphémère, pack téléchargeable, mini-documentaire',
+		),
 	},
 ];
 
 const resourceHighlights = [
 	{
-		title: 'Curriculum Maps',
-		copy: 'Scope + sequence from 5-session pop-ups to 12-week residencies including standards crosswalks.',
+		title: text('Leerlijnen', 'Curriculum Maps', 'Mapas curriculares', 'Cartes curriculaires'),
+		copy: text(
+			'Opbouw van 5-sessie pop-ups tot 12-weekse residenties met koppeling aan kerndoelen.',
+			'Scope + sequence from 5-session pop-ups to 12-week residencies including standards crosswalks.',
+			'Alcance y secuencia desde pop-ups de 5 sesiones hasta residencias de 12 semanas con referencia a estándares.',
+			'Progressions de 5 séances à 12 semaines avec correspondances aux référentiels.',
+		),
 		link: '#',
 	},
 	{
-		title: 'Facilitator Playbook',
-		copy: 'Warmups, reflection prompts, and troubleshooting scripts to keep momentum high.',
+		title: text('Facilitator Playbook', 'Facilitator Playbook', 'Manual del facilitador', 'Guide du facilitateur'),
+		copy: text(
+			'Warme starters, reflectievragen en troubleshooting scripts voor blijvende flow.',
+			'Warmups, reflection prompts, and troubleshooting scripts to keep momentum high.',
+			'Calentamientos, preguntas de reflexión y guiones de resolución para mantener el ritmo.',
+			'Échauffements, questions de réflexion et scripts de dépannage pour garder l’élan.',
+		),
 		link: '#',
 	},
 	{
-		title: 'Parts Illustrator Files',
-		copy: 'Printer-ready cut files, wiring zines, and OttoNinja decals for studio walls.',
+		title: text('Onderdelenbestanden', 'Parts Illustrator Files', 'Archivos de piezas', 'Fichiers de pièces'),
+		copy: text(
+			'Snijbestanden, bedrading-zines en OttoNinja-decals voor je studio.',
+			'Printer-ready cut files, wiring zines, and OttoNinja decals for studio walls.',
+			'Archivos listos para cortar, zines de cableado y calcomanías OttoNinja para el aula.',
+			'Fichiers prêts à découper, zines de câblage et autocollants OttoNinja pour le studio.',
+		),
 		link: '#',
 	},
 ];
 
 const fieldNotes = [
 	{
-		location: 'Riverstone STEAM Lab · Austin, TX',
-		title: 'Glow badges broadcast student emotions',
-		story:
+		location: text('Riverstone STEAM Lab · Austin, VS', 'Riverstone STEAM Lab · Austin, TX', 'Riverstone STEAM Lab · Austin, EE. UU.', 'Riverstone STEAM Lab · Austin, États-Unis'),
+		title: text('Glow-badges tonen leerlingemoties', 'Glow badges broadcast student emotions', 'Insignias luminosas muestran emociones', 'Des badges lumineux révèlent les émotions'),
+		story: text(
+			'Vijfdeklassers combineerden expressieve wearables met Otto Pulse zodat hun stemmingsbadges oplichtten tijdens critiques.',
 			'Fifth graders layered expressive wearables with Otto pulse boards so their mood badges lit up when sharing ideas during critique.',
+			'Estudiantes de quinto combinaron wearables expresivos con placas Otto Pulse para que sus insignias se iluminaran al compartir ideas.',
+			'Des élèves de CM2 ont associé des wearables expressifs aux cartes Otto Pulse pour illuminer leurs badges d’humeur pendant les critiques.',
+		),
 		impactStat: '92%',
-		impactLabel: 'reported stronger creative confidence',
-		highlights: ['Conducted “feelings to light” journaling sprints', 'Mapped color palettes to specific facilitation cues', 'Documented builds using 2-minute hallway demos'],
-		tags: ['Grades 4-5', 'Wearables'],
-		kitMix: 'Otto pulse board + color sensor ribbons',
-		ritual: 'Feelings-to-light journaling & hallway demos',
+		impactLabel: text('meldde meer creatieve zelfzekerheid', 'reported stronger creative confidence', 'reportó mayor confianza creativa', 'ont déclaré une confiance créative accrue'),
+		highlights: [
+			text('“Gevoel naar licht”-journalsprints uitgevoerd', 'Conducted “feelings to light” journaling sprints', 'Realizaron sprints de diarios “sentimiento a luz”', 'Conduit des sprints de journaux “émotions en lumière”'),
+			text('Kleurenpaletten gekoppeld aan facilitatiecues', 'Mapped color palettes to specific facilitation cues', 'Mapearon paletas de color a claves de facilitación', 'Associé des palettes de couleurs à des repères de facilitation'),
+			text('Bouwdocumentatie met 2-minuten-hallwaydemo’s', 'Documented builds using 2-minute hallway demos', 'Documentaron construcciones con demos de pasillo de 2 minutos', 'Documenté les prototypes via des démos de couloir de 2 minutes'),
+		],
+		tags: [text('Groep 7', 'Grades 4-5', 'Grados 4-5', 'CM1-CM2'), text('Wearables', 'Wearables', 'Wearables', 'Wearables')],
+		kitMix: text('Otto Pulse + kleuren-sensorlinten', 'Otto pulse board + color sensor ribbons', 'Otto Pulse + cintas de sensores de color', 'Otto Pulse + rubans de capteurs couleur'),
+		ritual: text('Gevoel-naar-licht journaling & hallwaydemo’s', 'Feelings-to-light journaling & hallway demos', 'Diarios de sentimientos a luz y demos en pasillo', 'Journaling “émotions en lumière” & démos de couloir'),
 		accent: '#7ef0c4',
 	},
 	{
-		location: 'North Loop Middle · Minneapolis, MN',
-		title: 'Sonic pods remixed advisory time',
-		story:
+		location: text('North Loop Middelbare · Minneapolis, VS', 'North Loop Middle · Minneapolis, MN', 'North Loop Middle · Minneapolis, EE. UU.', 'North Loop Middle · Minneapolis, États-Unis'),
+		title: text('Sonic pods vernieuwen mentoruur', 'Sonic pods remixed advisory time', 'Cápsulas sónicas reinventan la tutoría', 'Des capsules soniques réinventent le temps pastoral'),
+		story: text(
+			'Mentorgroepen bouwden Sonic Playground Capsules die op nabijheid reageren en gesprekken over inclusieve soundscapes openen.',
 			'Advisory groups prototyped Sonic Playground Capsules that respond to proximity, opening up conversations about inclusive soundscapes.',
+			'Grupos de tutoría prototiparon cápsulas Sonic Playground que reaccionan a la proximidad, abriendo conversaciones sobre paisajes sonoros inclusivos.',
+			'Des groupes d’accompagnement ont prototypé des capsules Sonic Playground sensibles à la proximité, lançant des discussions sur des paysages sonores inclusifs.',
+		),
 		impactStat: '14',
-		impactLabel: 'student-led sound capsules deployed',
-		highlights: ['Blended music, robotics, and ELA reflection journals', 'Used OttoNinja stances as cues for critique roles', 'Shared a pop-up “calm hallway” installation'],
-		tags: ['Middle school', 'Sensors'],
-		kitMix: 'Sonic Playground capsules + Otto servo base',
-		ritual: 'Calm hallway critique roles with proximity prompts',
+		impactLabel: text('studentgeleide geluidscapsules uitgerold', 'student-led sound capsules deployed', 'cápsulas sonoras lideradas por estudiantes desplegadas', 'capsules sonores menées par les élèves déployées'),
+		highlights: [
+			text('Muziek, robotica en taalreflecties gecombineerd', 'Blended music, robotics, and ELA reflection journals', 'Mezclaron música, robótica y diarios de reflexión lingüística', 'Mêlé musique, robotique et carnets de réflexion'),
+			text('OttoNinja-houdingen als feedbackrollen gebruikt', 'Used OttoNinja stances as cues for critique roles', 'Usaron posturas OttoNinja como señales para roles de crítica', 'Utilisé les postures OttoNinja comme repères de rôles de critique'),
+			text('Pop-up “rustige gang” installatie gedeeld', 'Shared a pop-up “calm hallway” installation', 'Compartieron una instalación emergente de “pasillo tranquilo”', 'Partagé une installation éphémère “couloir calme”'),
+		],
+		tags: [text('Onderbouw', 'Middle school', 'Secundaria', 'Collège'), text('Sensoren', 'Sensors', 'Sensores', 'Capteurs')],
+		kitMix: text('Sonic-capsules + Otto-servobasis', 'Sonic Playground capsules + Otto servo base', 'Cápsulas Sonic + base servo Otto', 'Capsules Sonic + base servo Otto'),
+		ritual: text('Rustige gang-rollen met nabijheidsprompts', 'Calm hallway critique roles with proximity prompts', 'Roles de pasillo tranquilo con indicaciones de proximidad', 'Rôles de couloir calme avec invites de proximité'),
 		accent: '#8ec5ff',
 	},
 	{
-		location: 'Aurora Youth Museum · Denver, CO',
-		title: 'Story-led robots for family nights',
-		story:
+		location: text('Aurora Youth Museum · Denver, VS', 'Aurora Youth Museum · Denver, CO', 'Aurora Youth Museum · Denver, EE. UU.', 'Aurora Youth Museum · Denver, États-Unis'),
+		title: text('Verhalende robots voor familienachten', 'Story-led robots for family nights', 'Robots guiados por historias para noches familiares', 'Robots guidés par l’histoire pour les soirées famille'),
+		story: text(
+			'Museumdocenten rethemden OttoNinja Motion Lab voor meertalige families met culturele artefacten en snelle kostuumwissels.',
 			'Museum educators re-themed OttoNinja Motion Lab for bilingual families, integrating cultural artifacts and rapid costume swaps.',
+			'Educadores de museo rethemearon OttoNinja Motion Lab para familias bilingües integrando artefactos culturales y cambios rápidos de vestuario.',
+			'Des médiateurs de musée ont réinventé l’OttoNinja Motion Lab pour des familles bilingues en intégrant des artefacts culturels et des changements de costumes rapides.',
+		),
 		impactStat: '480',
-		impactLabel: 'visitors cycled through four lab bays',
-		highlights: ['Translated prompts into Spanish + ASL cue cards', 'Deployed magnetic build checklists at each bay', 'Captured family interviews for future cohorts'],
-		tags: ['Museums', 'Family programs'],
-		kitMix: 'Motion Lab chassis + bilingual story deck',
-		ritual: 'Costume swap timer with family interviews',
+		impactLabel: text('bezoekers door vier labzones geleid', 'visitors cycled through four lab bays', 'visitantes recorrieron cuatro estaciones', 'visiteurs ont circulé dans quatre stations'),
+		highlights: [
+			text('Prompts vertaald naar Spaans + NGT-kaarten', 'Translated prompts into Spanish + ASL cue cards', 'Prompts traducidos al español y tarjetas en LSE', 'Prompts traduits en espagnol + cartes LSF'),
+			text('Magnetische checklists bij elke bay ingezet', 'Deployed magnetic build checklists at each bay', 'Listas magnéticas en cada estación', 'Listes magnétiques déployées dans chaque baie'),
+			text('Familie-interviews vastgelegd voor toekomstige cohorten', 'Captured family interviews for future cohorts', 'Entrevistas familiares grabadas para futuras cohortes', 'Interviews familiaux enregistrés pour les prochaines cohortes'),
+		],
+		tags: [text('Musea', 'Museums', 'Museos', 'Musées'), text('Familieprogramma’s', 'Family programs', 'Programas familiares', 'Programmes familiaux')],
+		kitMix: text('Motion Lab-chassis + meertalig verhaaldeck', 'Motion Lab chassis + bilingual story deck', 'Chasis Motion Lab + mazo de historias bilingüe', 'Châssis Motion Lab + jeu d’histoires bilingue'),
+		ritual: text('Kostuumwissel-timer met familie-interviews', 'Costume swap timer with family interviews', 'Temporizador de cambio de vestuario con entrevistas familiares', 'Minuteur de changement de costume avec interviews familiales'),
 		accent: '#ff9ec0',
 	},
 ];
 
 const supportTracks = [
 	{
-		title: 'Launch Intensive',
-		duration: '2-week sprint',
-		summary: 'Perfect when you need to reboot a makerspace or introduce OttoNinja to staff before students arrive.',
-		deliverables: ['Space + power audit', 'Kit remix plan', 'Demo day run-of-show', 'Facilitator micro-credential'],
-		signal: 'Best for schools opening a new lab or relaunching after upgrades.',
+		title: text('Launch Intensive', 'Launch Intensive', 'Intensivo de lanzamiento', 'Intensif de lancement'),
+		duration: text('2-week sprint', '2-week sprint', 'Sprint de 2 semanas', 'Sprint de 2 semaines'),
+		summary: text(
+			'Ideaal om een makerspace te rebooten of OttoNinja aan het team te introduceren vóór leerlingen starten.',
+			'Perfect when you need to reboot a makerspace or introduce OttoNinja to staff before students arrive.',
+			'Perfecto para reactivar un makerspace o introducir OttoNinja al equipo antes de que lleguen los estudiantes.',
+			'Parfait pour relancer un makerspace ou présenter OttoNinja au personnel avant l’arrivée des élèves.',
+		),
+		deliverables: [
+			text('Ruimte- en stroomscan', 'Space + power audit', 'Auditoría de espacio y energía', 'Audit de l’espace et de l’alimentation'),
+			text('Kit-remixplan', 'Kit remix plan', 'Plan de remix de kits', 'Plan de remix des kits'),
+			text('Programma voor demodag', 'Demo day run-of-show', 'Guion de día de demostración', 'Conduite de la journée de démo'),
+			text('Microcertificaat voor facilitators', 'Facilitator micro-credential', 'Microcredencial para facilitadores', 'Micro-certification facilitateur'),
+		],
+		signal: text('Beste keuze voor scholen die een nieuwe labruimte openen of herstarten.', 'Best for schools opening a new lab or relaunching after upgrades.', 'Ideal para escuelas que abren o relanzan un laboratorio.', 'Idéal pour les écoles qui ouvrent ou relancent un laboratoire.'),
 		touchpoints: [
-			{ label: 'Kickoff', detail: 'We walk your space (onsite or virtual) and capture a heat map of existing kits.' },
-			{ label: 'Staff sprint', detail: 'Interactive PD sessions to practice rituals, debugging scripts, and safety cues.' },
-			{ label: 'Showcase', detail: 'Run-of-show coaching so you debut the lab with evidence-ready stories.' },
+			{
+				label: text('Kick-off', 'Kickoff', 'Lanzamiento', 'Kick-off'),
+				detail: text('We verkennen je ruimte on- of offline en maken een heatmap van bestaande kits.', 'We walk your space (onsite or virtual) and capture a heat map of existing kits.', 'Recorremos tu espacio (presencial o virtual) y creamos un mapa de los kits existentes.', 'Nous parcourons votre espace (sur site ou virtuel) et cartographions les kits existants.'),
+			},
+			{
+				label: text('Staff sprint', 'Staff sprint', 'Sprint con el equipo', 'Sprint équipe'),
+				detail: text('Interactieve PD-sessies oefenen rituelen, debugscripts en veiligheidskaders.', 'Interactive PD sessions to practice rituals, debugging scripts, and safety cues.', 'Sesiones de desarrollo profesional para practicar rituales, guiones de depuración y pautas de seguridad.', 'Sessions de formation interactives pour pratiquer rituels, scripts de débogage et consignes de sécurité.'),
+			},
+			{
+				label: text('Showcase', 'Showcase', 'Exhibición', 'Showcase'),
+				detail: text('Coaching voor run-of-show zodat je lanceert met bewijsrijke verhalen.', 'Run-of-show coaching so you debut the lab with evidence-ready stories.', 'Acompañamiento del guion del evento para lanzar el laboratorio con historias llenas de evidencias.', 'Coaching de déroulé pour inaugurer le lab avec des récits étayés.'),
+			},
 		],
 		accent: '#ffb347',
 	},
 	{
-		title: 'Studio Residency',
-		duration: '6-12 week arc',
-		summary: 'We embed alongside your educators to co-teach, document evidence of learning, and coach reflective practice.',
-		deliverables: ['Weekly co-planning meetings', 'Student reflection capture system', 'Critique + share-out frameworks'],
-		signal: 'Ideal for districts piloting new career pathways or arts integration initiatives.',
+		title: text('Studio Residency', 'Studio Residency', 'Residencia de estudio', 'Résidence studio'),
+		duration: text('6-12 weekse cyclus', '6-12 week arc', 'Ciclo de 6-12 semanas', 'Cycle de 6 à 12 semaines'),
+		summary: text(
+			'We embedden naast je team om mee les te geven, leerbewijs te documenteren en reflectie te coachen.',
+			'We embed alongside your educators to co-teach, document evidence of learning, and coach reflective practice.',
+			'Nos integramos con tu equipo docente para co-enseñar, documentar evidencias y acompañar la reflexión.',
+			'Nous nous intégrons à votre équipe pour co-enseigner, documenter les preuves et coacher la réflexion.',
+		),
+		deliverables: [
+			text('Wekelijkse co-planning', 'Weekly co-planning meetings', 'Reuniones semanales de co-planificación', 'Réunions hebdo de co-planification'),
+			text('Systeem voor leerlingreflecties', 'Student reflection capture system', 'Sistema de capturas de reflexión estudiantil', 'Système de captures de réflexion des élèves'),
+			text('Kaders voor feedback & share-outs', 'Critique + share-out frameworks', 'Marcos de crítica y socialización', 'Cadres de critique et de restitution'),
+		],
+		signal: text('Ideaal voor besturen die nieuwe loopbaanroutes of kunstintegratie piloten.', 'Ideal for districts piloting new career pathways or arts integration initiatives.', 'Ideal para distritos que pilotan trayectorias profesionales o iniciativas de arte integrado.', 'Idéal pour les réseaux qui testent de nouvelles voies professionnelles ou l’intégration des arts.'),
 		touchpoints: [
-			{ label: 'Embedded weeks', detail: 'Co-teach lab days, release planning templates, and iterate rituals live with students.' },
-			{ label: 'Evidence studio', detail: 'Capture photo/video, compile reflection artifacts, and align to your reporting formats.' },
-			{ label: 'Share-out', detail: 'Prep students for audience-ready demos and debrief next steps with staff.' },
+			{
+				label: text('Embedded weken', 'Embedded weeks', 'Semanas inmersivas', 'Semaines immersives'),
+				detail: text('We co-teachen labdagen, delen planningsjablonen en itereren rituelen met leerlingen.', 'Co-teach lab days, release planning templates, and iterate rituals live with students.', 'Co-enseñamos días de laboratorio, liberamos plantillas de planificación e iteramos rituales junto al alumnado.', 'Co-animons les journées de lab, partageons des gabarits et ajustons les rituels avec les élèves.'),
+			},
+			{
+				label: text('Evidence studio', 'Evidence studio', 'Estudio de evidencias', 'Studio des preuves'),
+				detail: text('We maken foto/video, verzamelen reflecties en stemmen af op jouw rapportage.', 'Capture photo/video, compile reflection artifacts, and align to your reporting formats.', 'Capturamos foto/video, reunimos artefactos de reflexión y los alineamos a tus reportes.', 'Nous capturons photos/vidéos, compilons les artefacts et les alignons à vos rapports.'),
+			},
+			{
+				label: text('Share-out', 'Share-out', 'Presentación', 'Restitution'),
+				detail: text('We bereiden leerlingen voor op publiek en debriefen volgende stappen met het team.', 'Prep students for audience-ready demos and debrief next steps with staff.', 'Preparamos al alumnado para demos públicas y definimos los siguientes pasos con el equipo.', 'Nous préparons les élèves pour les démos publiques et clarifions les suites avec l’équipe.'),
+			},
 		],
 		accent: '#6de0b6',
 	},
 	{
-		title: 'Momentum Membership',
-		duration: 'Quarterly cadence',
-		summary: 'Remote studio hours, asset library drops, and quick-turn consults keep your program evolving between big launches.',
-		deliverables: ['Monthly office hours', 'Refresh kits shipped each quarter', 'Custom video walkthroughs'],
-		signal: 'Great fit for museums and nonprofits juggling rotating facilitators.',
+		title: text('Momentum Membership', 'Momentum Membership', 'Membresía Momentum', 'Abonnement Momentum'),
+		duration: text('Per kwartaal', 'Quarterly cadence', 'Cadencia trimestral', 'Cadence trimestrielle'),
+		summary: text(
+			'Remote studio-uren, assetdrops en snelle consults houden je programma in beweging tussen grote launches.',
+			'Remote studio hours, asset library drops, and quick-turn consults keep your program evolving between big launches.',
+			'Horas de estudio remotas, entregas de recursos y asesorías rápidas mantienen tu programa evolucionando entre grandes lanzamientos.',
+			'Des heures de studio à distance, des livraisons de ressources et des conseils flash maintiennent votre programme entre deux lancements.',
+		),
+		deliverables: [
+			text('Maandelijkse spreekuren', 'Monthly office hours', 'Horas de oficina mensuales', 'Permanences mensuelles'),
+			text('Opfriskits per kwartaal', 'Refresh kits shipped each quarter', 'Kits de reposición cada trimestre', 'Kits de rafraîchissement trimestriels'),
+			text('Custom video walkthroughs', 'Custom video walkthroughs', 'Recorridos en video personalizados', 'Tutoriels vidéo personnalisés'),
+		],
+		signal: text('Perfect voor musea en non-profits met wisselende facilitators.', 'Great fit for museums and nonprofits juggling rotating facilitators.', 'Ideal para museos y ONG con facilitadores rotativos.', 'Parfait pour musées et associations avec animateurs tournants.'),
 		touchpoints: [
-			{ label: 'Monthly office hours', detail: 'Bring in new facilitators, troubleshoot builds, or plan theme weeks.' },
-			{ label: 'Resource drops', detail: 'We queue new prompts, playlists, and quick-reference cards into your library.' },
-			{ label: 'Refresh kits', detail: 'Quarterly shipments keep consumables stocked and highlight new OttoNinja mods.' },
+			{
+				label: text('Maandelijkse spreekuren', 'Monthly office hours', 'Horas de oficina mensuales', 'Permanences mensuelles'),
+				detail: text('Breng nieuwe facilitators mee, los builds op of plan themaweken.', 'Bring in new facilitators, troubleshoot builds, or plan theme weeks.', 'Trae facilitadores nuevos, resuelve construcciones o planifica semanas temáticas.', 'Invitez de nouveaux facilitateurs, résolvez les montages ou planifiez des semaines thématiques.'),
+			},
+			{
+				label: text('Resource drops', 'Resource drops', 'Entregas de recursos', 'Livraisons de ressources'),
+				detail: text('We vullen je bibliotheek met prompts, playlists en kaarten.', 'We queue new prompts, playlists, and quick-reference cards into your library.', 'Añadimos nuevos prompts, playlists y fichas a tu biblioteca.', 'Nous ajoutons prompts, playlists et fiches à votre médiathèque.'),
+			},
+			{
+				label: text('Refresh kits', 'Refresh kits', 'Kits de recarga', 'Kits de rafraîchissement'),
+				detail: text('Kwartaalzendingen vullen verbruiksmaterialen en tonen nieuwe mods.', 'Quarterly shipments keep consumables stocked and highlight new OttoNinja mods.', 'Envíos trimestrales reponen consumibles y destacan nuevas mods OttoNinja.', 'Des envois trimestriels réapprovisionnent les consommables et présentent de nouveaux mods OttoNinja.'),
+			},
 		],
 		accent: '#c9a3ff',
 	},
 ];
+
+const sectionCopy = {
+	projects: {
+		eyebrow: text('Workshops & labs', 'Workshops & Labs', 'Laboratorios y talleres', 'Workshops & Labs'),
+		heading: text('Projectklare trajecten die meegroeien met je rooster.', 'Project-ready arcs that flex to your schedule.', 'Recorridos listos para proyectos que se adaptan a tu agenda.', 'Parcours prêts à l’emploi qui s’adaptent à votre planning.'),
+		body: text(
+			'Elke lab verbindt verhalende hooks met elektronicalessen. Wissel sensoren om, remix het verhaal en hergebruik dezelfde kit voor nieuwe cohorten.',
+			'Every lab blends artful narrative hooks with electronics literacy. Swap sensors, remix the story, and redeploy the same kit for multiple cohorts.',
+			'Cada laboratorio une ganchos narrativos con alfabetización electrónica. Cambia sensores, remezcla la historia y reutiliza el mismo kit para varias cohortes.',
+			'Chaque lab mêle accroches narratives et électronique. Échangez des capteurs, remixez l’histoire et réutilisez le kit pour plusieurs groupes.',
+		),
+	},
+	kits: {
+		eyebrow: text('Kitfamilies', 'Kit Families', 'Familias de kits', 'Familles de kits'),
+		heading: text('Elektronicabakken gecureerd voor speels leren.', 'Electronics bins curated for playful learning.', 'Cajas electrónicas curadas para un aprendizaje lúdico.', 'Bacs électroniques sélectionnés pour un apprentissage ludique.'),
+		body: text(
+			'Mix hardware met maakmaterialen zodat elke build uniek voelt. Elke familie bevat bedradingkaarten, resetrituelen en onderhoudsnotities.',
+			'Mix hardware with craft supplies so every build feels bespoke. Each family includes wiring cards, reset rituals, and maintenance notes.',
+			'Mezcla hardware con materiales creativos para que cada construcción se sienta única. Cada familia incluye tarjetas de cableado, rituales de reinicio y notas de mantenimiento.',
+			'Mélangez hardware et matériaux créatifs pour que chaque montage paraisse unique. Chaque famille inclut cartes de câblage, rituels de reset et notes d’entretien.',
+		),
+		tipLabel: text('Tip', 'Tip', 'Consejo', 'Astuce'),
+		tipBody: text(
+			'Label bakken met werkwoorden (gloeien, voelen, bewegen) zodat leerlingen kiezen op intentie in plaats van voorschrift.',
+			'Label totes with verbs (glow, sense, move) to guide learner choice instead of prescribing builds.',
+			'Etiqueta las cajas con verbos (brillar, detectar, mover) para guiar la elección del alumnado en lugar de prescribir construcciones.',
+			'Étiquetez les bacs avec des verbes (briller, sentir, bouger) pour guider les choix plutôt que d’imposer les montages.',
+		),
+	},
+	timeline: {
+		eyebrow: text('Leerroute', 'Curriculum Flow', 'Flujo curricular', 'Parcours pédagogique'),
+		heading: text('Begeleid leerlingen van spark tot showcase.', 'Guide learners from spark to showcase.', 'Guía al alumnado desde la chispa hasta la exhibición.', 'Guidez les apprenants de l’étincelle à la présentation.'),
+	},
+	fieldNotes: {
+		eyebrow: text('Veldnotities', 'Field Notes', 'Notas de campo', 'Notes de terrain'),
+		heading: text('Snapshots van labs die OttoNinja remixen.', 'Snapshots from labs remixing OttoNinja.', 'Postales de labs que remezclan OttoNinja.', 'Instantanés de labs qui remixent OttoNinja.'),
+		body: text(
+			'We documenteren elke residentie zodat facilitators zien hoe rituelen en kitmixen landen in verschillende gemeenschappen.',
+			'We co-document every residency so facilitators can see how story cues, rituals, and kit pairings land across different communities.',
+			'Codocumentamos cada residencia para que las y los facilitadores vean cómo funcionan los rituales y kits en distintas comunidades.',
+			'Nous co-documentons chaque résidence pour que les facilitateurs observent l’impact des rituels et associations de kits selon les communautés.',
+		),
+	},
+	support: {
+		eyebrow: text('Partnerondersteuning', 'Partner Support', 'Acompañamiento para socios', 'Accompagnement partenaire'),
+		heading: text('Implementatiecoach zonder giswerk.', 'Implementation coaching without the guesswork.', 'Acompañamiento de implementación sin conjeturas.', 'Coaching d’implémentation sans tâtonnements.'),
+		body: text(
+			'Van eerste kit-inventaris tot documentatieplaybooks: we blijven naast je team zodat creatieve robotica een herhaalbare gewoonte wordt.',
+			'From first kit inventory to documentation playbooks, we stay alongside your team so creative robotics becomes a repeatable habit.',
+			'De la primera auditoría de kits a los playbooks de documentación, nos quedamos junto a tu equipo para que la robótica creativa sea habitual.',
+			'De l’inventaire initial aux playbooks de documentation, nous restons à vos côtés pour ancrer la robotique créative.',
+		),
+		badges: [
+			text('Remote + onsite', 'Remote + onsite', 'Remoto + presencial', 'À distance + sur site'),
+			text('Bewijs-klare sjablonen', 'Evidence-ready templates', 'Plantillas listas para evidencias', 'Gabarits prêts pour les preuves'),
+		],
+		cta: text('Plan onboardingcall', 'Plan onboarding call', 'Planifica una llamada de onboarding', 'Planifier un appel d’onboarding'),
+	},
+	resources: {
+		eyebrow: text('Downloads & support', 'Downloads & Support', 'Descargas y soporte', 'Téléchargements & support'),
+		heading: text('Alles wat je nodig hebt om morgen te starten.', 'Everything you need to launch tomorrow.', 'Todo lo que necesitas para lanzar mañana.', 'Tout ce dont vous avez besoin pour lancer demain.'),
+		cta: text('Vraag toegang aan →', 'Request access →', 'Solicita acceso →', 'Demander l’accès →'),
+	},
+	cta: {
+		eyebrow: text('Breng het naar jouw community', 'Bring it to your community', 'Llévalo a tu comunidad', 'Apportez-le à votre communauté'),
+		heading: text('Heb je maatwerk-kerndoelen of een pop-up studio plan nodig?', 'Need custom standards alignment or a pop-up studio plan?', '¿Necesitas alinear estándares o un plan de estudio pop-up?', 'Besoin d’un alignement sur vos référentiels ou d’un plan de studio éphémère ?'),
+		body: text(
+			'Deel je doelen en we co-designen een traject dat OttoNinja bouwt op je bestaande media-, maak- of CTE-ruimtes.',
+			'Share your district goals and we will co-design a pathway that blends OttoNinja builds with your existing media, fabrication, or CTE spaces.',
+			'Comparte las metas de tu distrito y codiseñaremos una ruta que mezcle las construcciones OttoNinja con tus espacios actuales.',
+			'Partagez vos objectifs et nous co-concevrons un parcours qui mêle OttoNinja à vos espaces médias, fablab ou CTE.',
+		),
+		cta: text('Start een projectbrief', 'Start a project brief', 'Inicia un brief de proyecto', 'Démarrer un brief de projet'),
+	},
+};
 ---
 
 <Layout
@@ -188,55 +488,44 @@ const supportTracks = [
 	<main class="site">
 		<section class="hero" id="hero">
 			<div class="hero__content">
-				<p class="eyebrow">Creative education × OttoNinja</p>
-				<h1>
-					Design learning adventures where robotics, art, and small electronics remix into future-ready skills.
-				</h1>
-				<p class="lede">
-					The Rebooted Creative Lab bundles OttoNinja builds, printable challenges, and curated kits so every
-					session feels like a playful studio residency.
-				</p>
+				<p class="eyebrow" data-i18n><I18nText translations={heroCopy.eyebrow} /></p>
+				<h1 data-i18n><I18nText translations={heroCopy.heading} /></h1>
+				<p class="lede" data-i18n><I18nText translations={heroCopy.lede} /></p>
 				<div class="hero__cta">
-					<a class="solid" href="#projects">Plan a workshop</a>
-					<a class="ghost" href="#resources">Browse resources</a>
+					<a class="solid" href="#projects" data-i18n><I18nText translations={heroCopy.ctaSolid} /></a>
+					<a class="ghost" href="#resources" data-i18n><I18nText translations={heroCopy.ctaGhost} /></a>
 				</div>
 				<div class="hero__stats">
-					<div>
-						<strong>120+</strong>
-						<span>Student inventions documented</span>
-					</div>
-					<div>
-						<strong>18</strong>
-						<span>Ready-to-run lesson arcs</span>
-					</div>
-					<div>
-						<strong>4</strong>
-						<span>Kit families to mix + match</span>
-					</div>
+					{heroCopy.stats.map((stat) => (
+						<div>
+							<strong>{stat.value}</strong>
+							<span data-i18n><I18nText translations={stat.label} /></span>
+						</div>
+					))}
 				</div>
 			</div>
 			<div class="hero__panel" aria-label="Featured kit signal">
 				<div class="panel__grid">
 					<div class="panel__card">
-						<p class="panel__label">Live Sensor Feed</p>
-						<output>Distance: 18 cm</output>
-						<output>Light: 72%</output>
-						<output>Sound: 48 dB</output>
+						<p class="panel__label" data-i18n><I18nText translations={heroPanel.liveFeedLabel} /></p>
+						{heroPanel.liveOutputs.map((output) => (
+							<output data-i18n><I18nText translations={output} /></output>
+						))}
 					</div>
 					<div class="panel__card panel__card--accent">
-						<p class="panel__label">Showcase preset</p>
+						<p class="panel__label" data-i18n><I18nText translations={heroPanel.presetLabel} /></p>
 						<ul>
-							<li>Glow trail choreography</li>
-							<li>Wearable cue sync</li>
-							<li>Audience remix QR</li>
+							{heroPanel.presetItems.map((item) => (
+								<li data-i18n><I18nText translations={item} /></li>
+							))}
 						</ul>
 					</div>
 					<div class="panel__card">
-						<p class="panel__label">Build checklist</p>
+						<p class="panel__label" data-i18n><I18nText translations={heroPanel.checklistLabel} /></p>
 						<ul class="checklist">
-							<li>Snap OttoNinja legs</li>
-							<li>Flash motion script</li>
-							<li>Layer costume shell</li>
+							{heroPanel.checklistItems.map((item) => (
+								<li data-i18n><I18nText translations={item} /></li>
+							))}
 						</ul>
 					</div>
 				</div>
@@ -245,25 +534,22 @@ const supportTracks = [
 
 		<section class="projects" id="projects">
 			<header>
-				<p class="eyebrow">Workshops & Labs</p>
-				<h2>Project-ready arcs that flex to your schedule.</h2>
-				<p>
-					Every lab blends artful narrative hooks with electronics literacy. Swap sensors, remix the story, and
-					redeploy the same kit for multiple cohorts.
-				</p>
+				<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.projects.eyebrow} /></p>
+				<h2 data-i18n><I18nText translations={sectionCopy.projects.heading} /></h2>
+				<p data-i18n><I18nText translations={sectionCopy.projects.body} /></p>
 			</header>
 			<div class="card-grid">
 				{projectCards.map((project) => (
 					<article class="project-card">
 						<div class="project-card__meta">
-							<span>{project.focus}</span>
-							<span>{project.duration}</span>
+							<span data-i18n><I18nText translations={project.focus} /></span>
+							<span data-i18n><I18nText translations={project.duration} /></span>
 						</div>
-						<h3>{project.title}</h3>
-						<p>{project.description}</p>
+						<h3 data-i18n><I18nText translations={project.title} /></h3>
+						<p data-i18n><I18nText translations={project.description} /></p>
 						<ul>
 							{project.kits.map((kit) => (
-								<li>{kit}</li>
+								<li data-i18n><I18nText translations={kit} /></li>
 							))}
 						</ul>
 					</article>
@@ -274,24 +560,21 @@ const supportTracks = [
 		<section class="kits" id="kits">
 			<div class="kits__intro">
 				<div>
-					<p class="eyebrow">Kit Families</p>
-					<h2>Electronics bins curated for playful learning.</h2>
-					<p>
-						Mix hardware with craft supplies so every build feels bespoke. Each family includes wiring cards,
-						reset rituals, and maintenance notes.
-					</p>
+					<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.kits.eyebrow} /></p>
+					<h2 data-i18n><I18nText translations={sectionCopy.kits.heading} /></h2>
+					<p data-i18n><I18nText translations={sectionCopy.kits.body} /></p>
 				</div>
 				<div class="kits__note">
-					<strong>Tip</strong>
-					<p>Label totes with verbs (glow, sense, move) to guide learner choice instead of prescribing builds.</p>
+					<strong data-i18n><I18nText translations={sectionCopy.kits.tipLabel} /></strong>
+					<p data-i18n><I18nText translations={sectionCopy.kits.tipBody} /></p>
 				</div>
 			</div>
 			<div class="kit-grid">
 				{kitList.map((kit) => (
 					<div class="kit-card" style={{ '--chip-color': kit.color }}>
-						<h3>{kit.name}</h3>
-						<p class="kit-card__chips">{kit.chips}</p>
-						<p>{kit.useCase}</p>
+						<h3 data-i18n><I18nText translations={kit.name} /></h3>
+						<p class="kit-card__chips" data-i18n><I18nText translations={kit.chips} /></p>
+						<p data-i18n><I18nText translations={kit.useCase} /></p>
 					</div>
 				))}
 			</div>
@@ -299,17 +582,17 @@ const supportTracks = [
 
 		<section class="timeline" id="curriculum">
 			<header>
-				<p class="eyebrow">Curriculum Flow</p>
-				<h2>Guide learners from spark to showcase.</h2>
+				<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.timeline.eyebrow} /></p>
+				<h2 data-i18n><I18nText translations={sectionCopy.timeline.heading} /></h2>
 			</header>
 			<ol>
 				{timeline.map((step, index) => (
 					<li>
 						<div class="dot">{index + 1}</div>
 						<div>
-							<h3>{step.phase}</h3>
-							<p class="theme">{step.theme}</p>
-							<p class="outputs">{step.outputs}</p>
+							<h3 data-i18n><I18nText translations={step.phase} /></h3>
+							<p class="theme" data-i18n><I18nText translations={step.theme} /></p>
+							<p class="outputs" data-i18n><I18nText translations={step.outputs} /></p>
 						</div>
 					</li>
 				))}
@@ -318,44 +601,41 @@ const supportTracks = [
 
 		<section class="field-notes" id="stories">
 			<header>
-				<p class="eyebrow">Field Notes</p>
-				<h2>Snapshots from labs remixing OttoNinja.</h2>
-				<p>
-					We co-document every residency so facilitators can see how story cues, rituals, and kit pairings land across
-					different communities.
-				</p>
+				<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.fieldNotes.eyebrow} /></p>
+				<h2 data-i18n><I18nText translations={sectionCopy.fieldNotes.heading} /></h2>
+				<p data-i18n><I18nText translations={sectionCopy.fieldNotes.body} /></p>
 			</header>
 			<div class="note-grid">
 				{fieldNotes.map((note) => (
 					<article class="note-card" style={{ '--note-accent': note.accent }}>
 						<span class="note-card__pulse" aria-hidden="true"></span>
 						<div class="note-card__meta">
-							<span>{note.location}</span>
+							<span data-i18n><I18nText translations={note.location} /></span>
 							<div class="note-card__tags">
 								{note.tags.map((tag) => (
-									<span>{tag}</span>
+									<span data-i18n><I18nText translations={tag} /></span>
 								))}
 							</div>
 						</div>
-						<h3>{note.title}</h3>
-						<p>{note.story}</p>
+						<h3 data-i18n><I18nText translations={note.title} /></h3>
+						<p data-i18n><I18nText translations={note.story} /></p>
 						<div class="note-card__impact">
 							<strong>{note.impactStat}</strong>
-							<span>{note.impactLabel}</span>
+							<span data-i18n><I18nText translations={note.impactLabel} /></span>
 						</div>
 						<div class="note-card__system">
 							<div>
-								<span>Kit mix</span>
-								<p>{note.kitMix}</p>
+								<span data-i18n><I18nText translations={text('Kitmix', 'Kit mix', 'Mezcla de kits', 'Mix de kits')} /></span>
+								<p data-i18n><I18nText translations={note.kitMix} /></p>
 							</div>
 							<div>
-								<span>Ritual</span>
-								<p>{note.ritual}</p>
+								<span data-i18n><I18nText translations={text('Ritueel', 'Ritual', 'Ritual', 'Rituel')} /></span>
+								<p data-i18n><I18nText translations={note.ritual} /></p>
 							</div>
 						</div>
 						<ul>
 							{note.highlights.map((highlight) => (
-								<li>{highlight}</li>
+								<li data-i18n><I18nText translations={highlight} /></li>
 							))}
 						</ul>
 					</article>
@@ -365,40 +645,38 @@ const supportTracks = [
 
 		<section class="support" id="support">
 			<div class="support__intro">
-				<p class="eyebrow">Partner Support</p>
-				<h2>Implementation coaching without the guesswork.</h2>
-				<p>
-					From first kit inventory to documentation playbooks, we stay alongside your team so creative robotics becomes a
-					repeatable habit.
-				</p>
+				<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.support.eyebrow} /></p>
+				<h2 data-i18n><I18nText translations={sectionCopy.support.heading} /></h2>
+				<p data-i18n><I18nText translations={sectionCopy.support.body} /></p>
 				<div class="support__badge">
-					<span>Remote + onsite</span>
-					<span>Evidence-ready templates</span>
+					{sectionCopy.support.badges.map((badge) => (
+						<span data-i18n><I18nText translations={badge} /></span>
+					))}
 				</div>
-				<a class="ghost" href="#connect">Plan onboarding call</a>
+				<a class="ghost" href="#connect" data-i18n><I18nText translations={sectionCopy.support.cta} /></a>
 			</div>
 			<div class="support__tracks">
 				{supportTracks.map((track) => (
 					<article style={{ '--track-accent': track.accent }}>
 						<header>
-							<h3>{track.title}</h3>
-							<span class="support__duration">{track.duration}</span>
+							<h3 data-i18n><I18nText translations={track.title} /></h3>
+							<span class="support__duration" data-i18n><I18nText translations={track.duration} /></span>
 						</header>
-						<p>{track.summary}</p>
+						<p data-i18n><I18nText translations={track.summary} /></p>
 						<ul class="support__deliverables">
 							{track.deliverables.map((item) => (
-								<li>{item}</li>
+								<li data-i18n><I18nText translations={item} /></li>
 							))}
 						</ul>
 						<ul class="support__touchpoints">
 							{track.touchpoints.map((step) => (
 								<li>
-									<strong>{step.label}</strong>
-									<span>{step.detail}</span>
+									<strong data-i18n><I18nText translations={step.label} /></strong>
+									<span data-i18n><I18nText translations={step.detail} /></span>
 								</li>
 							))}
 						</ul>
-						<p class="support__signal">{track.signal}</p>
+						<p class="support__signal" data-i18n><I18nText translations={track.signal} /></p>
 					</article>
 				))}
 			</div>
@@ -406,15 +684,15 @@ const supportTracks = [
 
 		<section class="resources" id="resources">
 			<header>
-				<p class="eyebrow">Downloads & Support</p>
-				<h2>Everything you need to launch tomorrow.</h2>
+				<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.resources.eyebrow} /></p>
+				<h2 data-i18n><I18nText translations={sectionCopy.resources.heading} /></h2>
 			</header>
 			<div class="resource-grid">
 				{resourceHighlights.map((resource) => (
 					<article>
-						<h3>{resource.title}</h3>
-						<p>{resource.copy}</p>
-						<a href={resource.link}>Request access →</a>
+						<h3 data-i18n><I18nText translations={resource.title} /></h3>
+						<p data-i18n><I18nText translations={resource.copy} /></p>
+						<a href={resource.link} data-i18n><I18nText translations={sectionCopy.resources.cta} /></a>
 					</article>
 				))}
 			</div>
@@ -422,14 +700,11 @@ const supportTracks = [
 
 		<section class="cta" id="connect">
 			<div>
-				<p class="eyebrow">Bring it to your community</p>
-				<h2>Need custom standards alignment or a pop-up studio plan?</h2>
-				<p>
-					Share your district goals and we will co-design a pathway that blends OttoNinja builds with your
-					existing media, fabrication, or CTE spaces.
-				</p>
+				<p class="eyebrow" data-i18n><I18nText translations={sectionCopy.cta.eyebrow} /></p>
+				<h2 data-i18n><I18nText translations={sectionCopy.cta.heading} /></h2>
+				<p data-i18n><I18nText translations={sectionCopy.cta.body} /></p>
 			</div>
-			<a class="solid" href="mailto:hello@rebooted.education">Start a project brief</a>
+			<a class="solid" href="mailto:hello@rebooted.education" data-i18n><I18nText translations={sectionCopy.cta.cta} /></a>
 		</section>
 	</main>
 </Layout>

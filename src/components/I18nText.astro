@@ -1,0 +1,7 @@
+---
+const languages = ['nl', 'en', 'es', 'fr'];
+const { translations } = Astro.props;
+---
+{languages.map((lang) => (
+	<span lang={lang}>{translations?.[lang] ?? ''}</span>
+))}
