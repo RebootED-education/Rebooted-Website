@@ -95,6 +95,90 @@ const resourceHighlights = [
 		link: '#',
 	},
 ];
+
+const fieldNotes = [
+	{
+		location: 'Riverstone STEAM Lab · Austin, TX',
+		title: 'Glow badges broadcast student emotions',
+		story:
+			'Fifth graders layered expressive wearables with Otto pulse boards so their mood badges lit up when sharing ideas during critique.',
+		impactStat: '92%',
+		impactLabel: 'reported stronger creative confidence',
+		highlights: ['Conducted “feelings to light” journaling sprints', 'Mapped color palettes to specific facilitation cues', 'Documented builds using 2-minute hallway demos'],
+		tags: ['Grades 4-5', 'Wearables'],
+		kitMix: 'Otto pulse board + color sensor ribbons',
+		ritual: 'Feelings-to-light journaling & hallway demos',
+		accent: '#7ef0c4',
+	},
+	{
+		location: 'North Loop Middle · Minneapolis, MN',
+		title: 'Sonic pods remixed advisory time',
+		story:
+			'Advisory groups prototyped Sonic Playground Capsules that respond to proximity, opening up conversations about inclusive soundscapes.',
+		impactStat: '14',
+		impactLabel: 'student-led sound capsules deployed',
+		highlights: ['Blended music, robotics, and ELA reflection journals', 'Used OttoNinja stances as cues for critique roles', 'Shared a pop-up “calm hallway” installation'],
+		tags: ['Middle school', 'Sensors'],
+		kitMix: 'Sonic Playground capsules + Otto servo base',
+		ritual: 'Calm hallway critique roles with proximity prompts',
+		accent: '#8ec5ff',
+	},
+	{
+		location: 'Aurora Youth Museum · Denver, CO',
+		title: 'Story-led robots for family nights',
+		story:
+			'Museum educators re-themed OttoNinja Motion Lab for bilingual families, integrating cultural artifacts and rapid costume swaps.',
+		impactStat: '480',
+		impactLabel: 'visitors cycled through four lab bays',
+		highlights: ['Translated prompts into Spanish + ASL cue cards', 'Deployed magnetic build checklists at each bay', 'Captured family interviews for future cohorts'],
+		tags: ['Museums', 'Family programs'],
+		kitMix: 'Motion Lab chassis + bilingual story deck',
+		ritual: 'Costume swap timer with family interviews',
+		accent: '#ff9ec0',
+	},
+];
+
+const supportTracks = [
+	{
+		title: 'Launch Intensive',
+		duration: '2-week sprint',
+		summary: 'Perfect when you need to reboot a makerspace or introduce OttoNinja to staff before students arrive.',
+		deliverables: ['Space + power audit', 'Kit remix plan', 'Demo day run-of-show', 'Facilitator micro-credential'],
+		signal: 'Best for schools opening a new lab or relaunching after upgrades.',
+		touchpoints: [
+			{ label: 'Kickoff', detail: 'We walk your space (onsite or virtual) and capture a heat map of existing kits.' },
+			{ label: 'Staff sprint', detail: 'Interactive PD sessions to practice rituals, debugging scripts, and safety cues.' },
+			{ label: 'Showcase', detail: 'Run-of-show coaching so you debut the lab with evidence-ready stories.' },
+		],
+		accent: '#ffb347',
+	},
+	{
+		title: 'Studio Residency',
+		duration: '6-12 week arc',
+		summary: 'We embed alongside your educators to co-teach, document evidence of learning, and coach reflective practice.',
+		deliverables: ['Weekly co-planning meetings', 'Student reflection capture system', 'Critique + share-out frameworks'],
+		signal: 'Ideal for districts piloting new career pathways or arts integration initiatives.',
+		touchpoints: [
+			{ label: 'Embedded weeks', detail: 'Co-teach lab days, release planning templates, and iterate rituals live with students.' },
+			{ label: 'Evidence studio', detail: 'Capture photo/video, compile reflection artifacts, and align to your reporting formats.' },
+			{ label: 'Share-out', detail: 'Prep students for audience-ready demos and debrief next steps with staff.' },
+		],
+		accent: '#6de0b6',
+	},
+	{
+		title: 'Momentum Membership',
+		duration: 'Quarterly cadence',
+		summary: 'Remote studio hours, asset library drops, and quick-turn consults keep your program evolving between big launches.',
+		deliverables: ['Monthly office hours', 'Refresh kits shipped each quarter', 'Custom video walkthroughs'],
+		signal: 'Great fit for museums and nonprofits juggling rotating facilitators.',
+		touchpoints: [
+			{ label: 'Monthly office hours', detail: 'Bring in new facilitators, troubleshoot builds, or plan theme weeks.' },
+			{ label: 'Resource drops', detail: 'We queue new prompts, playlists, and quick-reference cards into your library.' },
+			{ label: 'Refresh kits', detail: 'Quarterly shipments keep consumables stocked and highlight new OttoNinja mods.' },
+		],
+		accent: '#c9a3ff',
+	},
+];
 ---
 
 <Layout
@@ -230,6 +314,94 @@ const resourceHighlights = [
 					</li>
 				))}
 			</ol>
+		</section>
+
+		<section class="field-notes" id="stories">
+			<header>
+				<p class="eyebrow">Field Notes</p>
+				<h2>Snapshots from labs remixing OttoNinja.</h2>
+				<p>
+					We co-document every residency so facilitators can see how story cues, rituals, and kit pairings land across
+					different communities.
+				</p>
+			</header>
+			<div class="note-grid">
+				{fieldNotes.map((note) => (
+					<article class="note-card" style={{ '--note-accent': note.accent }}>
+						<span class="note-card__pulse" aria-hidden="true"></span>
+						<div class="note-card__meta">
+							<span>{note.location}</span>
+							<div class="note-card__tags">
+								{note.tags.map((tag) => (
+									<span>{tag}</span>
+								))}
+							</div>
+						</div>
+						<h3>{note.title}</h3>
+						<p>{note.story}</p>
+						<div class="note-card__impact">
+							<strong>{note.impactStat}</strong>
+							<span>{note.impactLabel}</span>
+						</div>
+						<div class="note-card__system">
+							<div>
+								<span>Kit mix</span>
+								<p>{note.kitMix}</p>
+							</div>
+							<div>
+								<span>Ritual</span>
+								<p>{note.ritual}</p>
+							</div>
+						</div>
+						<ul>
+							{note.highlights.map((highlight) => (
+								<li>{highlight}</li>
+							))}
+						</ul>
+					</article>
+				))}
+			</div>
+		</section>
+
+		<section class="support" id="support">
+			<div class="support__intro">
+				<p class="eyebrow">Partner Support</p>
+				<h2>Implementation coaching without the guesswork.</h2>
+				<p>
+					From first kit inventory to documentation playbooks, we stay alongside your team so creative robotics becomes a
+					repeatable habit.
+				</p>
+				<div class="support__badge">
+					<span>Remote + onsite</span>
+					<span>Evidence-ready templates</span>
+				</div>
+				<a class="ghost" href="#connect">Plan onboarding call</a>
+			</div>
+			<div class="support__tracks">
+				{supportTracks.map((track) => (
+					<article style={{ '--track-accent': track.accent }}>
+						<header>
+							<h3>{track.title}</h3>
+							<span class="support__duration">{track.duration}</span>
+						</header>
+						<p>{track.summary}</p>
+						<ul class="support__deliverables">
+							{track.deliverables.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+						<ul class="support__touchpoints">
+							{track.touchpoints.map((step) => (
+								<li>
+									<strong>{step.label}</strong>
+									<span>{step.detail}</span>
+								</li>
+							))}
+						</ul>
+						<p class="support__signal">{track.signal}</p>
+					</article>
+				))}
+			</div>
 		</section>
 
 		<section class="resources" id="resources">
@@ -571,11 +743,295 @@ const resourceHighlights = [
 		text-decoration: none;
 	}
 
+	.field-notes {
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+		background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.15), transparent 50%),
+			linear-gradient(140deg, rgba(92, 204, 255, 0.12), rgba(255, 160, 188, 0.08));
+		position: relative;
+		overflow: hidden;
+	}
+
+	.field-notes::after {
+		content: '';
+		position: absolute;
+		bottom: -120px;
+		right: -40px;
+		width: 280px;
+		height: 280px;
+		background: radial-gradient(circle, rgba(126, 240, 196, 0.25), transparent);
+		filter: blur(25px);
+		pointer-events: none;
+	}
+
+	.note-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.note-card {
+		background: rgba(4, 6, 15, 0.8);
+		border: 1px solid color-mix(in srgb, var(--note-accent, #7ef0c4) 35%, rgba(255, 255, 255, 0.18));
+		border-radius: 22px;
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		transition: transform 220ms ease, border-color 220ms ease;
+	}
+
+	.note-card::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		border: 1px solid rgba(255, 255, 255, 0.04);
+		pointer-events: none;
+		mix-blend-mode: screen;
+	}
+
+	.note-card:hover {
+		transform: translateY(-4px);
+	}
+
+	.note-card__pulse {
+		position: absolute;
+		inset: 35% auto auto 35%;
+		width: 180px;
+		height: 180px;
+		background: radial-gradient(circle, color-mix(in srgb, var(--note-accent, #7ef0c4) 75%, transparent), transparent 65%);
+		filter: blur(30px);
+		opacity: 0.6;
+		animation: pulseGlow 6s ease-in-out infinite;
+		z-index: -1;
+	}
+
+	.note-card__meta {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		font-size: 0.85rem;
+		color: var(--text-soft);
+	}
+
+	.note-card__tags {
+		display: flex;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+	}
+
+	.note-card__tags span {
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		border-radius: 999px;
+		padding: 0.1rem 0.6rem;
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+
+	.note-card__impact {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.note-card__impact strong {
+		font-size: 2.1rem;
+		color: var(--note-accent, #7ef0c4);
+	}
+
+	.note-card ul {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-muted);
+	}
+
+	.note-card li {
+		margin-bottom: 0.2rem;
+	}
+
+	.note-card__system {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 0.75rem;
+		background: rgba(255, 255, 255, 0.04);
+		border-radius: 16px;
+		padding: 0.85rem 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.note-card__system span {
+		display: block;
+		text-transform: uppercase;
+		letter-spacing: 0.16em;
+		font-size: 0.7rem;
+		color: var(--text-soft);
+		margin-bottom: 0.25rem;
+	}
+
+	.note-card__system p {
+		margin: 0;
+		font-size: 0.95rem;
+		color: var(--text-muted);
+	}
+
+	.support {
+		display: grid;
+		grid-template-columns: minmax(240px, 1fr) minmax(240px, 1.5fr);
+		gap: 2rem;
+		align-items: start;
+		background: linear-gradient(135deg, rgba(9, 17, 33, 0.9), rgba(8, 12, 25, 0.8));
+	}
+
+	.support__intro {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.support__badge {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.support__badge span {
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 14px;
+		padding: 0.35rem 0.8rem;
+		font-size: 0.85rem;
+		color: var(--text-soft);
+	}
+
+	.support__tracks {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.support__tracks article {
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 22px;
+		padding: 1.5rem;
+		border: 1px solid color-mix(in srgb, var(--track-accent, #7ef0c4) 40%, rgba(255, 255, 255, 0.08));
+		box-shadow: 0 18px 40px rgba(5, 8, 20, 0.35);
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+	}
+
+	.support__tracks article::before {
+		content: '';
+		position: absolute;
+		top: -40px;
+		right: -40px;
+		width: 160px;
+		height: 160px;
+		background: radial-gradient(circle, color-mix(in srgb, var(--track-accent, #7ef0c4) 60%, transparent), transparent 70%);
+		opacity: 0.8;
+		filter: blur(25px);
+		z-index: -1;
+	}
+
+	.support__tracks header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 1rem;
+	}
+
+	.support__duration {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3rem;
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--text-soft);
+		padding: 0.2rem 0.85rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+		background: rgba(0, 0, 0, 0.15);
+	}
+
+	.support__deliverables {
+		margin: 0.75rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.support__deliverables li {
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		border-radius: 999px;
+		padding: 0.35rem 0.8rem;
+		font-size: 0.85rem;
+		color: var(--text-soft);
+	}
+
+	.support__touchpoints {
+		list-style: none;
+		margin: 1rem 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.support__touchpoints li {
+		padding-left: 1rem;
+		border-left: 2px solid color-mix(in srgb, var(--track-accent, #7ef0c4) 65%, rgba(255, 255, 255, 0.1));
+	}
+
+	.support__touchpoints strong {
+		display: block;
+		font-size: 0.92rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-base);
+	}
+
+	.support__touchpoints span {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+	}
+
+	.support__signal {
+		font-size: 0.9rem;
+		color: var(--text-soft);
+		margin-top: 0.75rem;
+	}
+
+	.support .ghost {
+		align-self: flex-start;
+	}
+
 	.cta {
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
 		background: linear-gradient(150deg, rgba(255, 255, 255, 0.15), rgba(126, 240, 196, 0.25));
+	}
+
+	@media (max-width: 920px) {
+		.support {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.note-card__meta {
+			flex-direction: column;
+		}
+		.note-card__system {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	@keyframes float {
@@ -597,6 +1053,24 @@ const resourceHighlights = [
 		.solid,
 		.ghost {
 			transition: none;
+		}
+		.note-card__pulse {
+			animation: none;
+		}
+	}
+
+	@keyframes pulseGlow {
+		0% {
+			transform: translate(-10%, -10%) scale(0.8);
+			opacity: 0.4;
+		}
+		50% {
+			transform: translate(0%, 0%) scale(1);
+			opacity: 0.85;
+		}
+		100% {
+			transform: translate(10%, 5%) scale(0.9);
+			opacity: 0.4;
 		}
 	}
 </style>
